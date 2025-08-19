@@ -2,6 +2,7 @@
 
 import React from 'react';
 import styled, { css } from 'styled-components';
+import Image from 'next/image';
 import { theme } from '@/theme/theme';
 
 type CardVariant = 'default' | 'surface' | 'elevated';
@@ -196,7 +197,7 @@ export const Card = ({
     >
       {hasImage && (
         <CardImage $height={image?.height} $objectFit={image?.objectFit}>
-          <img src={image.src} alt={image.alt} />
+          <Image src={image.src} alt={image.alt} fill style={{ objectFit: image?.objectFit || 'cover' }} />
         </CardImage>
       )}
       <CardContentWrapper $hasImage={hasImage}>

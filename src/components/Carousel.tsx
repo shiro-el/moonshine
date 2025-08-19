@@ -121,11 +121,11 @@ export const Carousel: React.FC<CarouselProps> = ({
   const childrenArray = React.Children.toArray(children);
   const totalItems = childrenArray.length;
 
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     if (infinite || currentIndex < totalItems - 1) {
       setCurrentIndex((prev) => (prev + 1) % totalItems);
     }
-  };
+  }, [infinite, currentIndex, totalItems]);
 
   const goToPrevious = () => {
     if (infinite || currentIndex > 0) {

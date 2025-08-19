@@ -9,6 +9,7 @@ interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>
   error?: string;
   helperText?: string;
   variant?: 'checkbox' | 'radio';
+  type?: 'checkbox' | 'radio';
   size?: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
   indeterminate?: boolean;
@@ -193,6 +194,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     error, 
     helperText, 
     variant = 'checkbox', 
+    type,
     size = 'md', 
     fullWidth = false,
     indeterminate = false,
@@ -206,7 +208,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         const event = {
           target: {
             checked: !checked,
-            type: variant,
+            type: type || variant,
             ...props
           }
         } as unknown as React.ChangeEvent<HTMLInputElement>;
@@ -223,7 +225,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         >
           <HiddenInput
             ref={ref}
-            type={variant}
+            type={type || variant}
             checked={checked}
             disabled={disabled}
             onChange={onChange}

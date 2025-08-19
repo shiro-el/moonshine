@@ -4,7 +4,7 @@ import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 import { theme } from '@/theme/theme';
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string;
   error?: string;
   helperText?: string;
@@ -146,7 +146,8 @@ const StyledInput = styled.input<StyledInputProps>`
 
 const IconWrapper = styled.div<{ $position: 'start' | 'end' }>`
   position: absolute;
-  ${({ $position }) => $position === 'start' ? 'left' : 'right'}: ${theme.spacing.md};
+  left: ${({ $position }) => $position === 'start' ? theme.spacing.md : 'auto'};
+  right: ${({ $position }) => $position === 'end' ? theme.spacing.md : 'auto'};
   display: flex;
   align-items: center;
   justify-content: center;

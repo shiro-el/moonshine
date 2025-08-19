@@ -157,7 +157,7 @@ export default function RecruitPage() {
       });
       setErrors({});
       
-    } catch (error) {
+    } catch {
       alert('제출 중 오류가 발생했습니다. 다시 시도해주세요.');
     } finally {
       setIsSubmitting(false);

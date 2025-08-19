@@ -42,6 +42,15 @@ const StyledLink = styled.a<{
   align-items: center;
   transition: ${theme.transitions.fast};
   text-decoration: ${({ $underline }) => $underline ? 'underline' : 'none'};
+  outline: none;
+  
+  &:focus {
+    outline: none;
+  }
+  
+  &:active {
+    outline: none;
+  }
   
   ${({ $disabled }) => $disabled && css`
     opacity: ${theme.effects.opacity.disabled};

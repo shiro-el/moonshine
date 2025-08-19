@@ -13,6 +13,15 @@ export const theme = {
       tertiary: 'rgb(98, 102, 109)',
       white: 'rgb(255, 255, 255)',
     },
+    surface: {
+      primary: 'rgb(20, 21, 22)',
+      secondary: 'rgb(35, 35, 38)',
+    },
+    border: 'rgb(45, 45, 48)',
+    error: 'rgb(239, 68, 68)',
+    success: 'rgb(34, 197, 94)',
+    warning: 'rgb(245, 158, 11)',
+    info: 'rgb(59, 130, 246)',
     palette: [
       'rgb(8, 9, 10)',
       'rgb(247, 248, 248)',

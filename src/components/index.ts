@@ -8,5 +8,12 @@ export { Navigation } from './Navigation';
 export { Hero } from './Hero';
 export { Section } from './Section';
 
+// 폼 컴포넌트들
+export { Input } from './Input';
+export { Textarea } from './Textarea';
+export { Select } from './Select';
+export { Checkbox } from './Checkbox';
+export { Form } from './Form';
+
 // 타입들도 export
 export type { Theme } from '@/theme/theme';

@@ -70,6 +70,15 @@ const Logo = styled.div`
   a {
     text-decoration: none;
     color: inherit;
+    outline: none;
+    
+    &:focus {
+      outline: none;
+    }
+    
+    &:active {
+      outline: none;
+    }
   }
 `;
 
@@ -96,9 +105,18 @@ const MenuItem = styled(Link)`
   font-weight: 500;
   line-height: 1.4;
   padding: ${theme.spacing.sm} 0;
+  outline: none;
   
   &:hover {
     color: ${theme.colors.text.white};
+  }
+  
+  &:focus {
+    outline: none;
+  }
+  
+  &:active {
+    outline: none;
   }
 `;
 
@@ -153,9 +171,18 @@ const MobileMenuItem = styled(Link)`
   border-bottom: 1px solid rgb(45, 45, 48);
   font-weight: 500;
   line-height: 1.4;
+  outline: none;
   
   &:hover {
     color: ${theme.colors.text.white};
+  }
+  
+  &:focus {
+    outline: none;
+  }
+  
+  &:active {
+    outline: none;
   }
   
   &:last-child {
@@ -182,11 +209,7 @@ export const Navigation: React.FC<NavigationProps> = ({
     { label: '컴포넌트', href: '/components' },
     { label: '문서', href: 'https://github.com', external: true },
   ],
-  ctaButton = {
-    label: '시작하기',
-    href: '/components',
-    variant: 'primary' as const,
-  },
+  ctaButton,
   transparent = false,
   className,
 }) => {

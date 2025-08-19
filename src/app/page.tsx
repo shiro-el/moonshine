@@ -11,20 +11,19 @@ export default function Home() {
         menuItems={[
           { label: '소개', href: '#about' },
           { label: '활동', href: '#activities' },
-          { label: '모집', href: '#apply' },
+          { label: '모집', href: '/recruit' },
           { label: 'Instagram', href: 'https://instagram.com', external: true },
         ]}
-        ctaButton={{ label: '가입하기', href: '#apply', variant: 'primary' }}
       />
 
       <Hero
         subtitle="양조 동아리 문샤인"
         title="Moonshine Brewing Club"
         description="문샤인은 양조주에 열정을 가진 사람들이 함께 배우고, 만들고, 나누는 양조 동아리입니다."
-        primaryButton={{ label: '지금 가입하기', href: '#apply' }}
+        primaryButton={{ label: '지원하기', href: '/recruit' }}
         secondaryButton={{ label: '활동 살펴보기', href: '#activities' }}
-        backgroundImage="https://images.unsplash.com/photo-1541542684-4a3223187a59?q=80&w=2000&auto=format&fit=crop"
-        height="85vh"
+        backgroundImage="/logo.jpeg"
+        height="100vh"
         align="left"
       />
 
@@ -103,13 +102,12 @@ export default function Home() {
         <Section.Content>
           <Card variant="elevated" padding="lg">
             <Card.Content>
-              <Typography variant="body" color="secondary">활동 요일: ?.</Typography>
+              <Typography variant="body" color="secondary" style={{ marginBottom: '24px' }}>
+                문샤인 양조 동아리에 가입하고 싶으시다면 아래 버튼을 클릭하여 지원서를 작성해주세요.
+              </Typography>
               <Card.Actions>
-                <Link href="https://forms.gle/" external>
-                  <Button variant="primary" size="md">신청서 작성</Button>
-                </Link>
-                <Link href="mailto:contact@moonshine.club" external>
-                  <Button variant="secondary" size="md">문의하기</Button>
+                <Link href="/recruit">
+                  <Button variant="primary" size="md">지원서 작성하기</Button>
                 </Link>
               </Card.Actions>
             </Card.Content>

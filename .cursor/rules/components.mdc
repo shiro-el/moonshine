@@ -1,0 +1,412 @@
+---
+alwaysApply: true
+---
+
+# Moonshine 프로젝트 컴포넌트 사용 규칙
+
+## 🎯 핵심 원칙
+- 이 프로젝트에서는 반드시 `src/components/` 디렉토리에 정의된 컴포넌트들을 사용해야 합니다
+- 새로운 UI 요소를 만들 때는 기존 컴포넌트를 확장하거나 조합하여 사용하세요
+- 인라인 스타일이나 직접적인 styled-components 사용을 금지합니다
+
+## 📦 필수 사용 컴포넌트
+
+### 1. Button 컴포넌트
+- **사용 위치**: 모든 버튼 요소
+- **변형**: `primary`, `secondary`, `card`
+- **크기**: `sm`, `md`, `lg`
+- **예시**:
+```tsx
+import { Button } from '@/components';
+
+<Button variant="primary" size="md">클릭하세요</Button>
+<Button variant="secondary" size="sm" fullWidth>전체 너비 버튼</Button>
+<Button variant="card" size="lg" loading>로딩 버튼</Button>
+```
+
+### 2. Typography 컴포넌트
+- **사용 위치**: 모든 텍스트 요소 (h1, h2, h3, h4, body, small, large)
+- **변형**: `h1`, `h2`, `h3`, `h4`, `body`, `small`, `large`
+- **색상**: `primary`, `secondary`, `tertiary`, `white`
+- **예시**:
+```tsx
+import { Typography } from '@/components';
+
+<Typography variant="h1" color="primary">메인 제목</Typography>
+<Typography variant="body" color="secondary">본문 텍스트</Typography>
+<Typography variant="small" color="tertiary" align="center">작은 텍스트</Typography>
+```
+
+### 3. Card 컴포넌트
+- **사용 위치**: 모든 카드 형태의 컨테이너
+- **변형**: `default`, `surface`, `elevated`
+- **패딩**: `none`, `sm`, `md`, `lg`
+- **예시**:
+```tsx
+import { Card } from '@/components';
+
+<Card variant="elevated" padding="lg" hover clickable>
+  <Typography variant="h3">카드 제목</Typography>
+  <Typography variant="body">카드 내용</Typography>
+</Card>
+```
+
+### 4. Link 컴포넌트
+- **사용 위치**: 모든 링크 요소
+- **변형**: `primary`, `secondary`, `white`
+- **크기**: `sm`, `md`, `lg`
+- **예시**:
+```tsx
+import { Link } from '@/components';
+
+<Link href="/about" variant="primary" size="md">내부 링크</Link>
+<Link href="https://example.com" external variant="secondary">외부 링크</Link>
+<LinkWithIcon href="/contact" variant="white" size="lg">아이콘 링크</LinkWithIcon>
+```
+
+### 5. Navigation 컴포넌트
+- **사용 위치**: 모든 네비게이션 바
+- **예시**:
+```tsx
+import { Navigation } from '@/components';
+
+<Navigation 
+  logo={<Typography variant="h3">Moonshine</Typography>}
+  menuItems={[
+    { label: '홈', href: '/' },
+    { label: '소개', href: '/about' },
+    { label: '연락처', href: '/contact' }
+  ]}
+  ctaButton={{
+    label: '시작하기',
+    href: '/get-started',
+    variant: 'primary'
+  }}
+  transparent
+/>
+```
+
+### 6. Hero 컴포넌트
+- **사용 위치**: 메인 히어로 섹션
+- **예시**:
+```tsx
+import { Hero } from '@/components';
+
+<Hero
+  title="환영합니다"
+  subtitle="Moonshine으로 시작하세요"
+  description="최고의 경험을 제공하는 플랫폼입니다"
+  primaryButton={{
+    label: '시작하기',
+    href: '/get-started'
+  }}
+  secondaryButton={{
+    label: '자세히 보기',
+    href: '/about'
+  }}
+  align="center"
+  height="600px"
+/>
+```
+
+### 7. Carousel 컴포넌트
+- **사용 위치**: 이미지나 콘텐츠 슬라이더
+- **예시**:
+```tsx
+import { Carousel } from '@/components';
+
+<Carousel autoPlay interval={3000} showDots showArrows infinite>
+  <Card variant="surface" padding="md">
+    <Typography variant="h4">슬라이드 1</Typography>
+  </Card>
+  <Card variant="surface" padding="md">
+    <Typography variant="h4">슬라이드 2</Typography>
+  </Card>
+</Carousel>
+```
+
+## 🚫 금지사항
+
+### 절대 하지 말아야 할 것들:
+1. **인라인 스타일 사용 금지**:
+```tsx
+// ❌ 잘못된 예시
+<div style={{ color: 'red', fontSize: '16px' }}>텍스트</div>
+
+// ✅ 올바른 예시
+<Typography variant="body" color="primary">텍스트</Typography>
+```
+
+2. **직접적인 styled-components 사용 금지**:
+```tsx
+// ❌ 잘못된 예시
+const StyledButton = styled.button`
+  background: blue;
+  color: white;
+`;
+
+// ✅ 올바른 예시
+<Button variant="primary">버튼</Button>
+```
+
+3. **HTML 기본 요소 직접 사용 금지**:
+```tsx
+// ❌ 잘못된 예시
+<button>클릭</button>
+<h1>제목</h1>
+<a href="/link">링크</a>
+
+// ✅ 올바른 예시
+<Button>클릭</Button>
+<Typography variant="h1">제목</Typography>
+<Link href="/link">링크</Link>
+```
+
+## 🔧 컴포넌트 확장 방법
+
+### 새로운 컴포넌트가 필요한 경우:
+1. `src/components/` 디렉토리에 새 컴포넌트 파일 생성
+2. 기존 컴포넌트와 일관된 패턴 따라 작성
+3. `src/components/index.ts`에 export 추가
+4. 테마 시스템 활용 (`@/theme/theme`)
+
+### 기존 컴포넌트 확장:
+```tsx
+// 기존 컴포넌트 조합으로 새로운 UI 만들기
+const CustomSection = () => (
+  <Card variant="elevated" padding="lg">
+    <Typography variant="h2" color="primary">섹션 제목</Typography>
+    <Typography variant="body" color="secondary">섹션 설명</Typography>
+    <div style={{ marginTop: '1rem' }}>
+      <Button variant="primary" size="md">액션 버튼</Button>
+    </div>
+  </Card>
+);
+```
+
+## 📝 코드 리뷰 체크리스트
+
+코드 리뷰 시 다음 사항들을 확인하세요:
+
+- [ ] 모든 버튼이 `Button` 컴포넌트를 사용하는가?
+- [ ] 모든 텍스트가 `Typography` 컴포넌트를 사용하는가?
+- [ ] 모든 링크가 `Link` 컴포넌트를 사용하는가?
+- [ ] 카드 형태의 컨테이너가 `Card` 컴포넌트를 사용하는가?
+- [ ] 인라인 스타일이 사용되지 않았는가?
+- [ ] HTML 기본 요소 대신 적절한 컴포넌트가 사용되었는가?
+- [ ] 테마 시스템이 일관되게 적용되었는가?
+
+## 🎨 테마 시스템 활용
+
+모든 컴포넌트는 `@/theme/theme`의 테마 시스템을 사용합니다:
+- 색상: `theme.colors`
+- 타이포그래피: `theme.typography`
+- 간격: `theme.spacing`
+- 전환 효과: `theme.transitions`
+- 테두리 반경: `theme.borderRadius`
+
+이 규칙을 따르면 일관된 디자인 시스템을 유지할 수 있습니다.
+# Moonshine 프로젝트 컴포넌트 사용 규칙
+
+## 🎯 핵심 원칙
+- 이 프로젝트에서는 반드시 `src/components/` 디렉토리에 정의된 컴포넌트들을 사용해야 합니다
+- 새로운 UI 요소를 만들 때는 기존 컴포넌트를 확장하거나 조합하여 사용하세요
+- 인라인 스타일이나 직접적인 styled-components 사용을 금지합니다
+
+## 📦 필수 사용 컴포넌트
+
+### 1. Button 컴포넌트
+- **사용 위치**: 모든 버튼 요소
+- **변형**: `primary`, `secondary`, `card`
+- **크기**: `sm`, `md`, `lg`
+- **예시**:
+```tsx
+import { Button } from '@/components';
+
+<Button variant="primary" size="md">클릭하세요</Button>
+<Button variant="secondary" size="sm" fullWidth>전체 너비 버튼</Button>
+<Button variant="card" size="lg" loading>로딩 버튼</Button>
+```
+
+### 2. Typography 컴포넌트
+- **사용 위치**: 모든 텍스트 요소 (h1, h2, h3, h4, body, small, large)
+- **변형**: `h1`, `h2`, `h3`, `h4`, `body`, `small`, `large`
+- **색상**: `primary`, `secondary`, `tertiary`, `white`
+- **예시**:
+```tsx
+import { Typography } from '@/components';
+
+<Typography variant="h1" color="primary">메인 제목</Typography>
+<Typography variant="body" color="secondary">본문 텍스트</Typography>
+<Typography variant="small" color="tertiary" align="center">작은 텍스트</Typography>
+```
+
+### 3. Card 컴포넌트
+- **사용 위치**: 모든 카드 형태의 컨테이너
+- **변형**: `default`, `surface`, `elevated`
+- **패딩**: `none`, `sm`, `md`, `lg`
+- **예시**:
+```tsx
+import { Card } from '@/components';
+
+<Card variant="elevated" padding="lg" hover clickable>
+  <Typography variant="h3">카드 제목</Typography>
+  <Typography variant="body">카드 내용</Typography>
+</Card>
+```
+
+### 4. Link 컴포넌트
+- **사용 위치**: 모든 링크 요소
+- **변형**: `primary`, `secondary`, `white`
+- **크기**: `sm`, `md`, `lg`
+- **예시**:
+```tsx
+import { Link } from '@/components';
+
+<Link href="/about" variant="primary" size="md">내부 링크</Link>
+<Link href="https://example.com" external variant="secondary">외부 링크</Link>
+<LinkWithIcon href="/contact" variant="white" size="lg">아이콘 링크</LinkWithIcon>
+```
+
+### 5. Navigation 컴포넌트
+- **사용 위치**: 모든 네비게이션 바
+- **예시**:
+```tsx
+import { Navigation } from '@/components';
+
+<Navigation 
+  logo={<Typography variant="h3">Moonshine</Typography>}
+  menuItems={[
+    { label: '홈', href: '/' },
+    { label: '소개', href: '/about' },
+    { label: '연락처', href: '/contact' }
+  ]}
+  ctaButton={{
+    label: '시작하기',
+    href: '/get-started',
+    variant: 'primary'
+  }}
+  transparent
+/>
+```
+
+### 6. Hero 컴포넌트
+- **사용 위치**: 메인 히어로 섹션
+- **예시**:
+```tsx
+import { Hero } from '@/components';
+
+<Hero
+  title="환영합니다"
+  subtitle="Moonshine으로 시작하세요"
+  description="최고의 경험을 제공하는 플랫폼입니다"
+  primaryButton={{
+    label: '시작하기',
+    href: '/get-started'
+  }}
+  secondaryButton={{
+    label: '자세히 보기',
+    href: '/about'
+  }}
+  align="center"
+  height="600px"
+/>
+```
+
+### 7. Carousel 컴포넌트
+- **사용 위치**: 이미지나 콘텐츠 슬라이더
+- **예시**:
+```tsx
+import { Carousel } from '@/components';
+
+<Carousel autoPlay interval={3000} showDots showArrows infinite>
+  <Card variant="surface" padding="md">
+    <Typography variant="h4">슬라이드 1</Typography>
+  </Card>
+  <Card variant="surface" padding="md">
+    <Typography variant="h4">슬라이드 2</Typography>
+  </Card>
+</Carousel>
+```
+
+## 🚫 금지사항
+
+### 절대 하지 말아야 할 것들:
+1. **인라인 스타일 사용 금지**:
+```tsx
+// ❌ 잘못된 예시
+<div style={{ color: 'red', fontSize: '16px' }}>텍스트</div>
+
+// ✅ 올바른 예시
+<Typography variant="body" color="primary">텍스트</Typography>
+```
+
+2. **직접적인 styled-components 사용 금지**:
+```tsx
+// ❌ 잘못된 예시
+const StyledButton = styled.button`
+  background: blue;
+  color: white;
+`;
+
+// ✅ 올바른 예시
+<Button variant="primary">버튼</Button>
+```
+
+3. **HTML 기본 요소 직접 사용 금지**:
+```tsx
+// ❌ 잘못된 예시
+<button>클릭</button>
+<h1>제목</h1>
+<a href="/link">링크</a>
+
+// ✅ 올바른 예시
+<Button>클릭</Button>
+<Typography variant="h1">제목</Typography>
+<Link href="/link">링크</Link>
+```
+
+## 🔧 컴포넌트 확장 방법
+
+### 새로운 컴포넌트가 필요한 경우:
+1. `src/components/` 디렉토리에 새 컴포넌트 파일 생성
+2. 기존 컴포넌트와 일관된 패턴 따라 작성
+3. `src/components/index.ts`에 export 추가
+4. 테마 시스템 활용 (`@/theme/theme`)
+
+### 기존 컴포넌트 확장:
+```tsx
+// 기존 컴포넌트 조합으로 새로운 UI 만들기
+const CustomSection = () => (
+  <Card variant="elevated" padding="lg">
+    <Typography variant="h2" color="primary">섹션 제목</Typography>
+    <Typography variant="body" color="secondary">섹션 설명</Typography>
+    <div style={{ marginTop: '1rem' }}>
+      <Button variant="primary" size="md">액션 버튼</Button>
+    </div>
+  </Card>
+);
+```
+
+## 📝 코드 리뷰 체크리스트
+
+코드 리뷰 시 다음 사항들을 확인하세요:
+
+- [ ] 모든 버튼이 `Button` 컴포넌트를 사용하는가?
+- [ ] 모든 텍스트가 `Typography` 컴포넌트를 사용하는가?
+- [ ] 모든 링크가 `Link` 컴포넌트를 사용하는가?
+- [ ] 카드 형태의 컨테이너가 `Card` 컴포넌트를 사용하는가?
+- [ ] 인라인 스타일이 사용되지 않았는가?
+- [ ] HTML 기본 요소 대신 적절한 컴포넌트가 사용되었는가?
+- [ ] 테마 시스템이 일관되게 적용되었는가?
+
+## 🎨 테마 시스템 활용
+
+모든 컴포넌트는 `@/theme/theme`의 테마 시스템을 사용합니다:
+- 색상: `theme.colors`
+- 타이포그래피: `theme.typography`
+- 간격: `theme.spacing`
+- 전환 효과: `theme.transitions`
+- 테두리 반경: `theme.borderRadius`
+
+이 규칙을 따르면 일관된 디자인 시스템을 유지할 수 있습니다.

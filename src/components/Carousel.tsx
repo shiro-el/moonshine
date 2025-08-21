@@ -19,6 +19,14 @@ const CarouselContainer = styled.div`
   width: 100%;
   overflow: hidden;
   border-radius: ${theme.borderRadius.md};
+  padding-bottom: ${theme.spacing.md};
+
+  @media (max-width: ${theme.breakpoints.md}) {
+    padding-bottom: ${theme.spacing.sm};
+  }
+  @media (max-width: ${theme.breakpoints.sm}) {
+    border-radius: ${theme.borderRadius.sm};
+  }
 `;
 
 const CarouselTrack = styled.div<{ $currentIndex: number; $totalItems: number }>`
@@ -69,6 +77,22 @@ const ArrowButton = styled.button<{ $direction: 'left' | 'right' }>`
     width: 20px;
     height: 20px;
   }
+
+  @media (max-width: ${theme.breakpoints.lg}) {
+    width: 36px;
+    height: 36px;
+    svg { width: 18px; height: 18px; }
+  }
+  @media (max-width: ${theme.breakpoints.md}) {
+    width: 32px;
+    height: 32px;
+    svg { width: 16px; height: 16px; }
+  }
+  @media (max-width: ${theme.breakpoints.sm}) {
+    width: 28px;
+    height: 28px;
+    svg { width: 14px; height: 14px; }
+  }
 `;
 
 const DotsContainer = styled.div`
@@ -91,6 +115,19 @@ const Dot = styled.button<{ $active: boolean }>`
   &:hover {
     background: ${({ $active }) => 
       $active ? theme.colors.text.primary : theme.colors.text.secondary};
+  }
+
+  @media (max-width: ${theme.breakpoints.lg}) {
+    width: 7px;
+    height: 7px;
+  }
+  @media (max-width: ${theme.breakpoints.md}) {
+    width: 6px;
+    height: 6px;
+  }
+  @media (max-width: ${theme.breakpoints.sm}) {
+    width: 5px;
+    height: 5px;
   }
 `;
 

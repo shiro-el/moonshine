@@ -2,21 +2,11 @@
 
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
-import { Link, Button } from './index';
+import { Link, Button, Typography } from './index';
 import { theme } from '@/theme/theme';
 
 interface NavigationProps {
   logo?: React.ReactNode;
-  menuItems?: Array<{
-    label: string;
-    href: string;
-    external?: boolean;
-  }>;
-  ctaButton?: {
-    label: string;
-    href: string;
-    variant?: 'primary' | 'secondary';
-  };
   transparent?: boolean;
   className?: string;
 }
@@ -31,6 +21,7 @@ const NavContainer = styled.nav<{ $transparent: boolean; $scrolled: boolean }>`
   left: 0;
   right: 0;
   z-index: 1000;
+  padding: ${theme.layout.containerPadding};
   transition: ${theme.transitions.medium};
   backdrop-filter: blur(10px);
   
@@ -57,6 +48,14 @@ const NavContent = styled.div`
   justify-content: space-between;
   height: 80px;
   width: 100%;
+
+  @media (max-width: ${theme.breakpoints.md}) {
+    height: 68px;
+  }
+
+  @media (max-width: ${theme.breakpoints.sm}) {
+    height: 60px;
+  }
 `;
 
 const Logo = styled.div`
@@ -80,19 +79,17 @@ const Logo = styled.div`
       outline: none;
     }
   }
-`;
 
-const DesktopMenu = styled.div`
-  display: flex;
-  align-items: center;
-  gap: ${theme.spacing.xl};
-  
-  @media (max-width: 768px) {
-    display: none;
+  @media (max-width: ${theme.breakpoints.lg}) {
+    font-size: ${theme.typography.headings.h3.fontSize};
+  }
+
+  @media (max-width: ${theme.breakpoints.sm}) {
+    font-size: 18px;
   }
 `;
 
-const MenuItems = styled.div`
+const RightMenu = styled.div`
   display: flex;
   align-items: center;
   gap: ${theme.spacing.lg};
@@ -104,6 +101,7 @@ const MenuItem = styled(Link)`
   transition: ${theme.transitions.fast};
   font-weight: 500;
   line-height: 1.4;
+  font-size: ${theme.typography.headings.h3.fontSize};
   padding: ${theme.spacing.sm} 0;
   outline: none;
   
@@ -127,8 +125,20 @@ const MobileMenuButton = styled.button`
   color: ${theme.colors.text.white};
   cursor: pointer;
   padding: ${theme.spacing.md};
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: ${theme.borderRadius.sm};
+  transition: ${theme.transitions.fast};
   
-  @media (max-width: 768px) {
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  &:active {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  @media (max-width: ${theme.breakpoints.md}) {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -140,76 +150,8 @@ const MobileMenuButton = styled.button`
   }
 `;
 
-const MobileMenu = styled.div<MobileMenuProps>`
-  position: fixed;
-  top: 80px;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgb(45, 45, 48);
-  transform: translateY(${({ $isOpen }) => $isOpen ? '0' : '-100%'});
-  transition: transform ${theme.transitions.medium};
-  z-index: 999;
-  
-  @media (min-width: 769px) {
-    display: none;
-  }
-`;
-
-const MobileMenuContent = styled.div`
-  padding: ${theme.spacing.lg} ${theme.layout.containerPadding};
-  display: flex;
-  flex-direction: column;
-  gap: ${theme.spacing.md};
-`;
-
-const MobileMenuItem = styled(Link)`
-  color: ${theme.colors.text.secondary};
-  text-decoration: none;
-  padding: ${theme.spacing.md} 0;
-  border-bottom: 1px solid rgb(45, 45, 48);
-  font-weight: 500;
-  line-height: 1.4;
-  outline: none;
-  
-  &:hover {
-    color: ${theme.colors.text.white};
-  }
-  
-  &:focus {
-    outline: none;
-  }
-  
-  &:active {
-    outline: none;
-  }
-  
-  &:last-child {
-    border-bottom: none;
-  }
-`;
-
-const HamburgerIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor">
-    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-  </svg>
-);
-
-const CloseIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor">
-    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-  </svg>
-);
-
 export const Navigation: React.FC<NavigationProps> = ({
   logo = 'Moonshine',
-  menuItems = [
-    { label: '홈', href: '/' },
-    { label: '컴포넌트', href: '/components' },
-    { label: '문서', href: 'https://github.com', external: true },
-  ],
-  ctaButton,
   transparent = false,
   className,
 }) => {
@@ -219,15 +161,15 @@ export const Navigation: React.FC<NavigationProps> = ({
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
+      // 스크롤 시 모바일 메뉴 닫기
+      if (isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  }, [isMobileMenuOpen]);
 
   return (
     <NavContainer $transparent={transparent} $scrolled={isScrolled} className={className}>
@@ -236,59 +178,12 @@ export const Navigation: React.FC<NavigationProps> = ({
           <Link href="/">{logo}</Link>
         </Logo>
 
-        <DesktopMenu>
-          <MenuItems>
-            {menuItems.map((item, index) => (
-              <MenuItem
-                key={index}
-                href={item.href}
-                external={item.external}
-                variant="white"
-              >
-                {item.label}
-              </MenuItem>
-            ))}
-          </MenuItems>
-          
-          {ctaButton && (
-            <Link href={ctaButton.href}>
-              <Button variant={ctaButton.variant} size="sm">
-                {ctaButton.label}
-              </Button>
-            </Link>
-          )}
-        </DesktopMenu>
-
-        <MobileMenuButton onClick={toggleMobileMenu}>
-          {isMobileMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
-        </MobileMenuButton>
+        <Logo>
+          <Link href="/recruit">
+            <Typography variant="h3" color="white">지원</Typography>
+          </Link>
+        </Logo>
       </NavContent>
-
-      <MobileMenu $isOpen={isMobileMenuOpen}>
-        <MobileMenuContent>
-          {menuItems.map((item, index) => (
-            <div key={index} onClick={() => setIsMobileMenuOpen(false)}>
-              <MobileMenuItem
-                href={item.href}
-                external={item.external}
-                variant="white"
-              >
-                {item.label}
-              </MobileMenuItem>
-            </div>
-          ))}
-          
-          {ctaButton && (
-            <div onClick={() => setIsMobileMenuOpen(false)}>
-              <Link href={ctaButton.href}>
-                <Button variant={ctaButton.variant} fullWidth>
-                  {ctaButton.label}
-                </Button>
-              </Link>
-            </div>
-          )}
-        </MobileMenuContent>
-      </MobileMenu>
     </NavContainer>
   );
 };

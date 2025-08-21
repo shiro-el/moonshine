@@ -53,6 +53,10 @@ const Inner = styled.div`
   margin: 0 auto;
   padding: 0 ${theme.layout.containerPadding};
   width: 100%;
+
+  @media (max-width: ${theme.breakpoints.md}) {
+    padding: 0 16px;
+  }
 `;
 
 const HeaderWrapper = styled.div<{ $align: SectionAlign }>`
@@ -64,6 +68,11 @@ const GridWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: ${theme.spacing.lg};
+
+  @media (max-width: ${theme.breakpoints.md}) {
+    grid-template-columns: 1fr;
+    gap: ${theme.spacing.md};
+  }
 `;
 
 const ContentWrapper = styled.div``;

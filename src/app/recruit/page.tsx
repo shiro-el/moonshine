@@ -9,9 +9,9 @@ import {
   Button, 
   Typography, 
   Card, 
-  Navigation 
+  Navigation,
+  Section 
 } from '@/components';
-
 interface FormData {
   name: string;
   studentId: string;
@@ -130,35 +130,56 @@ export default function RecruitPage() {
     setIsSubmitting(true);
 
     try {
-      // 실제 제출 로직 (현재는 시뮬레이션)
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      alert('지원서가 성공적으로 제출되었습니다! 면접 일정은 추후 연락드리겠습니다.');
-      
-      // 폼 초기화
-      setFormData({
-        name: '',
-        studentId: '',
-        contact: '',
-        motivation: '',
-        activities: '',
-        interviewTimes: {
-          '9/8(월) 18:00 ~ 19:00': false,
-          '9/8(월) 19:00 ~ 20:00': false,
-          '9/8(월) 20:00 ~ 21:00': false,
-          '9/8(월) 21:00 ~ 22:00': false,
-          '9/9(화) 18:00 ~ 19:00': false,
-          '9/9(화) 19:00 ~ 20:00': false,
-          '9/9(화) 20:00 ~ 21:00': false,
-          '9/9(화) 21:00 ~ 22:00': false,
+      // API 호출
+      const response = await fetch('/api/recruit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-        additionalComments: '',
-        interviewNotes: '',
+        body: JSON.stringify(formData),
       });
-      setErrors({});
+
+      const result = await response.json();
+
+      if (result.success) {
+        alert(result.message);
+        
+        // 폼 초기화
+        setFormData({
+          name: '',
+          studentId: '',
+          contact: '',
+          motivation: '',
+          activities: '',
+          interviewTimes: {
+            '9/8(월) 18:00 ~ 19:00': false,
+            '9/8(월) 19:00 ~ 20:00': false,
+            '9/8(월) 20:00 ~ 21:00': false,
+            '9/8(월) 21:00 ~ 22:00': false,
+            '9/9(화) 18:00 ~ 19:00': false,
+            '9/9(화) 19:00 ~ 20:00': false,
+            '9/9(화) 20:00 ~ 21:00': false,
+            '9/9(화) 21:00 ~ 22:00': false,
+          },
+          additionalComments: '',
+          interviewNotes: '',
+        });
+        setErrors({});
+      } else {
+        // 서버에서 온 에러 처리
+        if (result.errors) {
+          const newErrors: FormErrors = {};
+          result.errors.forEach((error: { field: string; message: string }) => {
+            newErrors[error.field as keyof FormErrors] = error.message;
+          });
+          setErrors(newErrors);
+        }
+        alert(result.message || '제출 중 오류가 발생했습니다.');
+      }
       
-    } catch {
-      alert('제출 중 오류가 발생했습니다. 다시 시도해주세요.');
+    } catch (error) {
+      console.error('제출 오류:', error);
+      alert('네트워크 오류가 발생했습니다. 다시 시도해주세요.');
     } finally {
       setIsSubmitting(false);
     }
@@ -191,48 +212,27 @@ export default function RecruitPage() {
       <Navigation
         transparent
         logo={<Typography variant="h3" color="white">Moonshine</Typography>}
-        menuItems={[
-          { label: '홈', href: '/' },
-          { label: '소개', href: '/#about' },
-          { label: '활동', href: '/#activities' },
-        ]}
-        ctaButton={{ label: '컴포넌트', href: '/components', variant: 'primary' }}
       />
 
-      <div style={{ 
-        minHeight: '100vh', 
-        background: '#000000',
-        paddingTop: '80px',
-        paddingBottom: '40px'
-      }}>
-        <div style={{ 
-          maxWidth: '800px', 
-          margin: '0 auto', 
-          padding: '0 24px' 
-        }}>
-          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-            <Typography variant="h1" color="white" style={{ marginBottom: '16px' }}>
-              Moonshine 신입 회원 모집
-            </Typography>
-            <Typography variant="body" color="white" style={{ opacity: 0.9 }}>
-              양조에 열정을 가진 여러분을 기다리고 있습니다
-            </Typography>
-          </div>
+      <Section variant="default" align="center" padding="md" className="responsive-padding section-with-top-margin">
+        <Section.Content>
+          <Typography variant="h1" color="white">Moonshine 신입 회원 모집</Typography>
+          <Typography variant="body" color="secondary">양조에 열정을 가진 여러분을 기다리고 있습니다</Typography>
+        </Section.Content>
+      </Section>
 
-          <Card variant="elevated" padding="lg">
-            <Form onSubmit={handleSubmit} fullWidth>
+      <Section variant="default" align="left" padding="md" className="responsive-padding">
+        <Section.Content>
+          <Card variant="elevated" padding="lg" className="mobile-card">
+            <Form onSubmit={handleSubmit} fullWidth className="mobile-form" gap="xl">
               <Form.Title>신입 회원 지원서</Form.Title>
               <Form.Subtitle>
-                아래 양식을 작성하여 Moonshine 양조 동아리에 지원해주세요.
+                ㅎㅇ
               </Form.Subtitle>
 
               <Form.Section>
-                {/* 기본 정보 */}
-                <Typography variant="h3" style={{ marginBottom: '24px', color: '#f7f8f8' }}>
-                  기본 정보
-                </Typography>
-
-                <Form.Row>
+                <Typography variant="h3" color="white">기본 정보</Typography>
+                <Form.Row className="flex-col md:flex-row gap-4">
                   <Input
                     label="이름 *"
                     placeholder="홍길동"
@@ -241,6 +241,7 @@ export default function RecruitPage() {
                     error={errors.name}
                     required
                     fullWidth
+                    className="touch-friendly"
                   />
                   <Input
                     label="학번 *"
@@ -250,9 +251,9 @@ export default function RecruitPage() {
                     error={errors.studentId}
                     required
                     fullWidth
+                    className="touch-friendly"
                   />
                 </Form.Row>
-
                 <Input
                   label="연락처 *"
                   placeholder="010-xxxx-xxxx"
@@ -261,13 +262,12 @@ export default function RecruitPage() {
                   error={errors.contact}
                   required
                   fullWidth
+                  className="touch-friendly"
                 />
+              </Form.Section>
 
-                {/* 지원 동기 */}
-                <Typography variant="h3" style={{ marginBottom: '24px', marginTop: '40px', color: '#f7f8f8' }}>
-                  지원 동기
-                </Typography>
-
+              <Form.Section>
+                <Typography variant="h3" color="white">지원 동기</Typography>
                 <Textarea
                   label="Moonshine에 지원하게 된 동기를 작성해 주세요. *"
                   placeholder="양조에 대한 관심, Moonshine을 선택한 이유 등을 자유롭게 작성해주세요."
@@ -279,13 +279,12 @@ export default function RecruitPage() {
                   showCharacterCount
                   required
                   fullWidth
+                  className="touch-friendly"
                 />
+              </Form.Section>
 
-                {/* 활동 계획 */}
-                <Typography variant="h3" style={{ marginBottom: '24px', marginTop: '40px', color: '#f7f8f8' }}>
-                  활동 계획
-                </Typography>
-
+              <Form.Section>
+                <Typography variant="h3" color="white">활동 계획</Typography>
                 <Textarea
                   label="Moonshine에 들어와서 하고 싶은 활동을 작성해 주세요. *"
                   placeholder="이미 Moonshine에서 하고 있는 활동을 적으셔도 되고, 새롭게 하고 싶은 활동을 적으셔도 됩니다."
@@ -297,29 +296,17 @@ export default function RecruitPage() {
                   showCharacterCount
                   required
                   fullWidth
+                  className="touch-friendly"
                 />
+              </Form.Section>
 
-                {/* 면접 시간 */}
-                <Typography variant="h3" style={{ marginBottom: '24px', marginTop: '40px', color: '#f7f8f8' }}>
-                  면접 일정
-                </Typography>
-
-                <Typography variant="body" color="secondary" style={{ marginBottom: '16px' }}>
-                  면접은 태울관 3110호에서 대면으로 진행됩니다.
-                </Typography>
-
+              <Form.Section>
+                <Typography variant="h3" color="white">면접 일정</Typography>
+                <Typography variant="body" color="secondary">면접은 태울관 3110호에서 대면으로 진행됩니다.</Typography>
                 {errors.interviewTimes && (
-                  <Typography variant="small" color="secondary" style={{ marginBottom: '16px', color: '#ef4444' }}>
-                    {errors.interviewTimes}
-                  </Typography>
+                  <Typography variant="small" color="secondary">{errors.interviewTimes}</Typography>
                 )}
-
-                <div style={{ 
-                  display: 'grid', 
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-                  gap: '12px',
-                  marginBottom: '24px'
-                }}>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                   {interviewTimeOptions.map((time) => (
                     <Checkbox
                       key={time}
@@ -327,15 +314,14 @@ export default function RecruitPage() {
                       checked={formData.interviewTimes[time as keyof typeof formData.interviewTimes]}
                       onChange={(e) => handleInterviewTimeChange(time, e.target.checked)}
                       name="interviewTimes"
+                      className="touch-friendly"
                     />
                   ))}
                 </div>
+              </Form.Section>
 
-                {/* 추가 사항 */}
-                <Typography variant="h3" style={{ marginBottom: '24px', marginTop: '40px', color: '#f7f8f8' }}>
-                  추가 사항
-                </Typography>
-
+              <Form.Section>
+                <Typography variant="h3" color="white">추가 사항</Typography>
                 <Textarea
                   label="추가로 하고 싶은 말이 있다면 작성해 주세요."
                   placeholder="자유롭게 작성해주세요."
@@ -345,8 +331,8 @@ export default function RecruitPage() {
                   maxLength={500}
                   showCharacterCount
                   fullWidth
+                  className="touch-friendly"
                 />
-
                 <Textarea
                   label="면접 시간과 관련해서 참고해야 하는 것이 있다면 입력해 주세요."
                   placeholder="예시: 21:00 ~ 22:00에 된다고 체크했는데, 21:30 이후로만 가능해요 등"
@@ -356,32 +342,32 @@ export default function RecruitPage() {
                   maxLength={300}
                   showCharacterCount
                   fullWidth
+                  className="touch-friendly"
                 />
               </Form.Section>
 
-              <Form.Actions>
-                <Button variant="secondary" type="button" disabled={isSubmitting}>
-                  취소
-                </Button>
+              <Form.Actions className="flex flex-col md:flex-row gap-4 justify-center">
+                <Button variant="secondary" type="button" disabled={isSubmitting} className="touch-friendly w-full md:w-auto">취소</Button>
                 <Button 
                   variant="primary" 
                   type="submit" 
                   loading={isSubmitting}
                   disabled={isSubmitting}
+                  className="touch-friendly w-full md:w-auto"
                 >
                   {isSubmitting ? '제출 중...' : '지원서 제출'}
                 </Button>
               </Form.Actions>
             </Form>
           </Card>
+        </Section.Content>
+      </Section>
 
-          <div style={{ textAlign: 'center', marginTop: '40px' }}>
-            <Typography variant="body" color="white" style={{ opacity: 0.8 }}>
-              문의사항이 있으시면 contact@moonshine.club으로 연락주세요
-            </Typography>
-          </div>
-        </div>
-      </div>
+      <Section variant="transparent" align="center" padding="sm" className="responsive-padding">
+        <Section.Content>
+          <Typography variant="body" color="secondary">문의사항이 있으시면 contact@moonshine.club으로 연락주세요</Typography>
+        </Section.Content>
+      </Section>
     </>
   );
 }

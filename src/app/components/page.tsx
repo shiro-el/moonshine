@@ -13,11 +13,21 @@ const Container = styled.div`
   min-height: 100vh;
   padding-top: ${theme.spacing.xl};
   padding-bottom: ${theme.spacing.xl};
+  
+  @media (max-width: 768px) {
+    padding: ${theme.spacing.md};
+    padding-top: ${theme.spacing.lg};
+    padding-bottom: ${theme.spacing.lg};
+  }
 `;
 
 const Header = styled.header`
   text-align: center;
   margin-bottom: ${theme.spacing.xl};
+  
+  @media (max-width: 768px) {
+    margin-bottom: ${theme.spacing.lg};
+  }
 `;
 
 const Section = styled.section`
@@ -26,6 +36,11 @@ const Section = styled.section`
   background-color: ${theme.colors.primary.surface};
   border-radius: ${theme.borderRadius.md};
   border: 1px solid rgb(45, 45, 48);
+  
+  @media (max-width: 768px) {
+    padding: ${theme.spacing.md};
+    margin-bottom: ${theme.spacing.lg};
+  }
 `;
 
 const SectionTitle = styled(Typography)`
@@ -38,6 +53,10 @@ const DemoGrid = styled.div`
   display: grid;
   gap: ${theme.spacing.lg};
   margin-bottom: ${theme.spacing.lg};
+  
+  @media (max-width: 768px) {
+    gap: ${theme.spacing.md};
+  }
 `;
 
 const FlexGroup = styled.div`
@@ -45,6 +64,12 @@ const FlexGroup = styled.div`
   gap: ${theme.spacing.md};
   align-items: center;
   flex-wrap: wrap;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: ${theme.spacing.sm};
+  }
 `;
 
 const CodeBlock = styled.pre`
@@ -56,6 +81,11 @@ const CodeBlock = styled.pre`
   overflow-x: auto;
   border: 1px solid rgb(45, 45, 48);
   margin-top: ${theme.spacing.md};
+  
+  @media (max-width: 768px) {
+    font-size: 0.75rem;
+    padding: ${theme.spacing.sm};
+  }
 `;
 
 const DemoCard = styled(Card)`
@@ -98,7 +128,7 @@ export default function ComponentsPage() {
   };
 
   return (
-    <Container>
+    <Container className="responsive-padding">
       <Header>
         <Typography variant="h1" align="center">
           컴포넌트 라이브러리
@@ -109,7 +139,7 @@ export default function ComponentsPage() {
       </Header>
 
       {/* Typography Section */}
-      <Section>
+      <Section className="mobile-card">
         <SectionTitle variant="h2">Typography</SectionTitle>
         
         <DemoGrid>
@@ -157,16 +187,16 @@ export default function ComponentsPage() {
       </Section>
 
       {/* Button Section */}
-      <Section>
+      <Section className="mobile-card">
         <SectionTitle variant="h2">Buttons</SectionTitle>
         
         <DemoGrid>
           <div>
             <Typography variant="h4" style={{ marginBottom: theme.spacing.md }}>버튼 변형</Typography>
             <FlexGroup>
-              <Button variant="primary">Primary Button</Button>
-              <Button variant="secondary">Secondary Button</Button>
-              <Button variant="card">Card Button</Button>
+              <Button variant="primary" className="touch-friendly">Primary Button</Button>
+              <Button variant="secondary" className="touch-friendly">Secondary Button</Button>
+              <Button variant="card" className="touch-friendly">Card Button</Button>
             </FlexGroup>
             <CodeBlock>{`<Button variant="primary">Primary Button</Button>
 <Button variant="secondary">Secondary Button</Button>
@@ -176,9 +206,9 @@ export default function ComponentsPage() {
           <div>
             <Typography variant="h4" style={{ marginBottom: theme.spacing.md }}>버튼 크기</Typography>
             <FlexGroup>
-              <Button size="sm">Small</Button>
-              <Button size="md">Medium</Button>
-              <Button size="lg">Large</Button>
+              <Button size="sm" className="touch-friendly">Small</Button>
+              <Button size="md" className="touch-friendly">Medium</Button>
+              <Button size="lg" className="touch-friendly">Large</Button>
             </FlexGroup>
             <CodeBlock>{`<Button size="sm">Small</Button>
 <Button size="md">Medium</Button>
@@ -188,11 +218,11 @@ export default function ComponentsPage() {
           <div>
             <Typography variant="h4" style={{ marginBottom: theme.spacing.md }}>버튼 상태</Typography>
             <FlexGroup>
-              <Button loading={buttonLoading} onClick={handleLoadingDemo}>
+              <Button loading={buttonLoading} onClick={handleLoadingDemo} className="touch-friendly">
                 {buttonLoading ? '로딩 중...' : '로딩 데모'}
               </Button>
-              <Button disabled>Disabled</Button>
-              <Button fullWidth style={{ marginTop: theme.spacing.md }}>Full Width Button</Button>
+              <Button disabled className="touch-friendly">Disabled</Button>
+              <Button fullWidth style={{ marginTop: theme.spacing.md }} className="touch-friendly">Full Width Button</Button>
             </FlexGroup>
             <CodeBlock>{`<Button loading={true}>로딩 중...</Button>
 <Button disabled>Disabled</Button>
@@ -202,7 +232,7 @@ export default function ComponentsPage() {
       </Section>
 
       {/* Link Section */}
-      <Section>
+      <Section className="mobile-card">
         <SectionTitle variant="h2">Links</SectionTitle>
         
         <DemoGrid>
@@ -255,7 +285,7 @@ export default function ComponentsPage() {
       </Section>
 
       {/* Card Section */}
-      <Section>
+      <Section className="mobile-card">
         <SectionTitle variant="h2">Cards</SectionTitle>
         
         <DemoGrid>
@@ -429,7 +459,7 @@ export default function ComponentsPage() {
       </Section>
 
       {/* Carousel Section */}
-      <Section>
+      <Section className="mobile-card">
         <SectionTitle variant="h2">Carousel</SectionTitle>
         
         <DemoGrid>
@@ -552,7 +582,7 @@ export default function ComponentsPage() {
       </Section>
 
       {/* Navigation Section */}
-      <Section>
+      <Section className="mobile-card">
         <SectionTitle variant="h2">Navigation</SectionTitle>
         
         <DemoGrid>
@@ -561,16 +591,6 @@ export default function ComponentsPage() {
             
             <div style={{ border: '1px solid rgb(45, 45, 48)', borderRadius: theme.borderRadius.md, overflow: 'hidden', width: '100%' }}>
               <Navigation 
-                menuItems={[
-                  { label: '홈', href: '/' },
-                  { label: '컴포넌트', href: '/components' },
-                  { label: '문서', href: 'https://github.com', external: true },
-                ]}
-                ctaButton={{
-                  label: '시작하기',
-                  href: '/components',
-                  variant: 'primary',
-                }}
               />
               <div style={{ height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: theme.colors.primary.background }}>
                 <Typography variant="body" color="secondary">Navigation 컴포넌트가 여기에 표시됩니다</Typography>
@@ -597,16 +617,6 @@ export default function ComponentsPage() {
             <div style={{ border: '1px solid rgb(45, 45, 48)', borderRadius: theme.borderRadius.md, overflow: 'hidden', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', width: '100%' }}>
               <Navigation 
                 transparent={true}
-                menuItems={[
-                  { label: '홈', href: '/' },
-                  { label: '컴포넌트', href: '/components' },
-                  { label: '문서', href: 'https://github.com', external: true },
-                ]}
-                ctaButton={{
-                  label: '시작하기',
-                  href: '/components',
-                  variant: 'primary',
-                }}
               />
               <div style={{ height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Typography variant="body" color="white">투명 배경의 Navigation</Typography>
@@ -615,8 +625,6 @@ export default function ComponentsPage() {
 
             <CodeBlock>{`<Navigation 
   transparent={true}
-  menuItems={[...]}
-  ctaButton={{...}}
 />`}</CodeBlock>
           </div>
 
@@ -642,7 +650,7 @@ export default function ComponentsPage() {
       </Section>
 
       {/* Hero Section */}
-      <Section>
+      <Section className="mobile-card">
         <SectionTitle variant="h2">Hero</SectionTitle>
         
         <DemoGrid>
@@ -741,7 +749,7 @@ export default function ComponentsPage() {
       </Section>
 
       {/* Input Section */}
-      <Section>
+      <Section className="mobile-card">
         <SectionTitle variant="h2">Input Components</SectionTitle>
         
         <DemoGrid>
@@ -1119,7 +1127,7 @@ export default function ComponentsPage() {
       </Section>
 
       {/* Form Section */}
-      <Section>
+      <Section className="mobile-card">
         <SectionTitle variant="h2">Form</SectionTitle>
         
         <DemoGrid>
@@ -1283,7 +1291,7 @@ export default function ComponentsPage() {
       </Section>
 
       {/* Usage Guidelines */}
-      <Section>
+      <Section className="mobile-card">
         <SectionTitle variant="h2">사용 가이드라인</SectionTitle>
         
         <DemoGrid>

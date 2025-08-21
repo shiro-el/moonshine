@@ -28,6 +28,9 @@ const StyledTypography = styled.div<{
   font-family: ${theme.typography.fontFamily.primary};
   margin: 0;
   text-align: ${({ $align }) => $align};
+  word-break: keep-all;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   
   // 색상 설정
   ${({ $color }) => {

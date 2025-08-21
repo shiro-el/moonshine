@@ -177,8 +177,17 @@ export const theme = {
   // 레이아웃
   layout: {
     maxWidth: '1200px',
-    containerPadding: '0 24px',
+    containerPadding: '12px 24px',
     sectionPadding: '80px 0',
+  },
+
+  // 반응형 브레이크포인트
+  breakpoints: {
+    xs: '480px',
+    sm: '640px',
+    md: '768px',
+    lg: '1024px',
+    xl: '1280px',
   },
 
   // 애니메이션

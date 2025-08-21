@@ -8,13 +8,13 @@ interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
   children: React.ReactNode;
   onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
   layout?: 'vertical' | 'horizontal' | 'grid';
-  gap?: 'sm' | 'md' | 'lg';
+  gap?: 'sm' | 'md' | 'lg' | 'xl';
   fullWidth?: boolean;
 }
 
 interface FormContainerProps {
   $layout: 'vertical' | 'horizontal' | 'grid';
-  $gap: 'sm' | 'md' | 'lg';
+  $gap: 'sm' | 'md' | 'lg' | 'xl';
   $fullWidth: boolean;
 }
 
@@ -52,13 +52,18 @@ const FormSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${theme.spacing.md};
+  margin-bottom: ${theme.spacing.xl};
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 const FormRow = styled.div`
   display: flex;
   gap: ${theme.spacing.md};
   
-  @media (max-width: 768px) {
+  @media (max-width: ${theme.breakpoints.md}) {
     flex-direction: column;
   }
 `;
@@ -69,7 +74,7 @@ const FormActions = styled.div`
   justify-content: flex-end;
   margin-top: ${theme.spacing.lg};
   
-  @media (max-width: 768px) {
+  @media (max-width: ${theme.breakpoints.md}) {
     flex-direction: column;
   }
 `;
@@ -79,6 +84,10 @@ const FormTitle = styled.h2`
   font-weight: ${theme.typography.headings.h2.fontWeight};
   color: ${theme.colors.text.primary};
   margin-bottom: ${theme.spacing.lg};
+  line-height: 1.4;
+  word-break: keep-all;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 `;
 
 const FormSubtitle = styled.p`
@@ -86,6 +95,9 @@ const FormSubtitle = styled.p`
   color: ${theme.colors.text.secondary};
   margin-bottom: ${theme.spacing.lg};
   line-height: 1.6;
+  word-break: keep-all;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 `;
 
 const FormDivider = styled.hr`
@@ -106,7 +118,7 @@ export const Form: React.FC<FormProps> & {
   children, 
   onSubmit, 
   layout = 'vertical', 
-  gap = 'md', 
+  gap = 'lg', 
   fullWidth = false,
   ...props 
 }) => {

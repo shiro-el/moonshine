@@ -62,6 +62,10 @@
   "recruit": {
     "title": "Moonshine New Member Recruitment",
     "subtitle": "We are waiting for those who are passionate about brewing",
+    "period": {
+      "title": "Recruitment Period",
+      "message": "~ 2025-09-06 00:00"
+    },
     "periodEnded": {
       "title": "Recruitment Period Has Ended",
       "message": "Currently, it is not the recruitment period.",

@@ -62,6 +62,10 @@
   "recruit": {
     "title": "Moonshine 신입 회원 모집",
     "subtitle": "양조에 열정을 가진 여러분을 기다리고 있습니다",
+    "period": {
+      "title": "리크루팅 기간",
+      "message": "2025년 9월 6일 00:00까지"
+    },
     "periodEnded": {
       "title": "리크루팅 기간이 종료되었습니다",
       "message": "현재는 리크루팅 기간이 아닙니다.",

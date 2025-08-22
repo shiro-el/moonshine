@@ -26,22 +26,22 @@ const CheckboxGrid = styled.div`
   gap: ${theme.spacing.md};
   width: 100%;
   margin-top: ${theme.spacing.md};
-  
+
   @media (min-width: ${theme.breakpoints.sm}) {
     grid-template-columns: repeat(2, 1fr);
     gap: ${theme.spacing.lg};
   }
-  
+
   @media (min-width: ${theme.breakpoints.md}) {
     grid-template-columns: repeat(2, 1fr);
     gap: ${theme.spacing.lg};
   }
-  
+
   @media (min-width: ${theme.breakpoints.lg}) {
     grid-template-columns: repeat(4, 1fr);
     gap: ${theme.spacing.lg};
   }
-  
+
   @media (min-width: ${theme.breakpoints.xl}) {
     grid-template-columns: repeat(4, 1fr);
     gap: ${theme.spacing.xl};
@@ -77,7 +77,8 @@ const CheckboxItem = styled.div`
   border-radius: ${theme.borderRadius.sm};
   background-color: ${theme.colors.surface.secondary};
   transition: ${theme.transitions.fast};
-  
+  cursor: pointer;
+
   &:hover {
     background-color: ${theme.colors.surface.primary};
   }
@@ -438,24 +439,33 @@ export default function RecruitPage() {
                       {errors.interviewTimes}
                     </Typography>
                   )}
-                                     <CheckboxGrid>
-                     {getInterviewTimeOptions(t).map((time: string) => (
-                       <CheckboxItem key={time}>
-                         <Checkbox
-                           label={time}
-                           checked={
-                             formData.interviewTimes[
-                               time as keyof typeof formData.interviewTimes
-                             ]
-                           }
-                           onChange={(e) =>
-                             handleInterviewTimeChange(time, e.target.checked)
-                           }
-                           name="interviewTimes"
-                         />
-                       </CheckboxItem>
-                     ))}
-                   </CheckboxGrid>
+                  <CheckboxGrid>
+                    {getInterviewTimeOptions(t).map((time: string) => (
+                      <CheckboxItem
+                        key={time}
+                        onClick={() => {
+                          const currentValue =
+                            formData.interviewTimes[
+                              time as keyof typeof formData.interviewTimes
+                            ];
+                          handleInterviewTimeChange(time, !currentValue);
+                        }}
+                      >
+                        <Checkbox
+                          label={time}
+                          checked={
+                            formData.interviewTimes[
+                              time as keyof typeof formData.interviewTimes
+                            ]
+                          }
+                          onChange={(e) =>
+                            handleInterviewTimeChange(time, e.target.checked)
+                          }
+                          name="interviewTimes"
+                        />
+                      </CheckboxItem>
+                    ))}
+                  </CheckboxGrid>
                 </Form.Section>
 
                 <Form.Section>

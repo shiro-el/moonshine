@@ -55,10 +55,6 @@ const FullWidthTextarea = styled(Textarea)`
   width: 100%;
 `;
 
-const FullWidthButton = styled(Button)`
-  width: 100%;
-`;
-
 interface FormData {
   name: string;
   studentId: string;

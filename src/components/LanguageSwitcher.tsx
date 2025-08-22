@@ -3,7 +3,6 @@
 import { useLocale } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
 import { Globe } from 'lucide-react';
-import { Button } from './Button';
 import { locales, type Locale } from '@/i18n/config';
 
 interface LanguageSwitcherProps {
@@ -30,14 +29,6 @@ export function LanguageSwitcher({
     const newPath = segments.join('/');
     
     router.push(newPath);
-  };
-
-  const getCurrentLanguageLabel = () => {
-    const labels = {
-      ko: '한국어',
-      en: 'English'
-    };
-    return labels[locale];
   };
 
   return (

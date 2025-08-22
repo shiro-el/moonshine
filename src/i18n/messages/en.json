@@ -62,6 +62,25 @@
   "recruit": {
     "title": "Moonshine New Member Recruitment",
     "subtitle": "We are waiting for those who are passionate about brewing",
+    "periodEnded": {
+      "title": "Recruitment Period Has Ended",
+      "message": "Currently, it is not the recruitment period.",
+      "submessage": "Please wait for the next opportunity."
+    },
+    "interviewTimes": {
+      "monday": {
+        "18_19": "9/8(Mon) 18:00 ~ 19:00",
+        "19_20": "9/8(Mon) 19:00 ~ 20:00",
+        "20_21": "9/8(Mon) 20:00 ~ 21:00",
+        "21_22": "9/8(Mon) 21:00 ~ 22:00"
+      },
+      "tuesday": {
+        "18_19": "9/9(Tue) 18:00 ~ 19:00",
+        "19_20": "9/9(Tue) 19:00 ~ 20:00",
+        "20_21": "9/9(Tue) 20:00 ~ 21:00",
+        "21_22": "9/9(Tue) 21:00 ~ 22:00"
+      }
+    },
     "form": {
       "title": "New Member Application",
       "subtitle": "We are waiting for those who are passionate about brewing",
@@ -97,5 +116,31 @@
     "edit": "Edit",
     "delete": "Delete",
     "confirm": "Confirm"
+  },
+  "errors": {
+    "name": {
+      "required": "Please enter your name."
+    },
+    "studentId": {
+      "required": "Please enter your student ID.",
+      "format": "Student ID must be 8 digits."
+    },
+    "contact": {
+      "required": "Please enter your contact information.",
+      "format": "Contact must be in 010-xxxx-xxxx format."
+    },
+    "motivation": {
+      "required": "Please write your motivation."
+    },
+    "activities": {
+      "required": "Please write about the activities you want to do."
+    },
+    "interviewTimes": {
+      "required": "Please select at least one available interview time."
+    },
+    "submit": {
+      "error": "An error occurred while submitting.",
+      "network": "A network error occurred. Please try again."
+    }
   }
 }

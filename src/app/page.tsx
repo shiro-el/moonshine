@@ -23,69 +23,79 @@ export default function Home() {
       />
 
       <Section id="about" variant="default" align="left" padding="md" className="responsive-padding">
-        <Section.Header title="문샤인은 이런 곳이에요" subtitle="양조부터 테이스팅까지, 함께 성장합니다" align="left" />
+        <Section.Header title="Moonshine이 추구하는 가치" align="left" />
         <Section.Grid>
           <Card variant="surface" padding="md" hover className="mobile-card">
             <Card.Header>
-              <Card.Title>정기 양조</Card.Title>
-              <Card.Subtitle>레시피 설계부터 브루잉까지</Card.Subtitle>
+              <Card.Title>다양성</Card.Title>
+              <Card.Subtitle>맥주부터 브랜디까지</Card.Subtitle>
             </Card.Header>
             <Card.Content>
-              <Typography variant="body" color="secondary">월 1-2회 브루잉 데이를 열어 스타일별 레시피를 실험하고 기록합니다.</Typography>
+              <Typography variant="body" color="secondary">주종에 상관 없이 다양한 주류를 양조합니다.</Typography>
             </Card.Content>
           </Card>
           <Card variant="surface" padding="md" hover className="mobile-card">
             <Card.Header>
-              <Card.Title>센서리 훈련</Card.Title>
-              <Card.Subtitle>테이스팅 & 페어링</Card.Subtitle>
+              <Card.Title>창의성</Card.Title>
+              <Card.Subtitle>창의적인 레시피 작성</Card.Subtitle>
             </Card.Header>
             <Card.Content>
-              <Typography variant="body" color="secondary">스타일별 테이스팅 노트를 작성하고 음식 페어링을 함께 연구합니다.</Typography>
+              <Typography variant="body" color="secondary">부원들의 아이디어가 반영된 창의적인 레시피를 시도합니다.</Typography>
             </Card.Content>
           </Card>
           <Card variant="surface" padding="md" hover className="mobile-card">
             <Card.Header>
-              <Card.Title>양조 스터디</Card.Title>
-              <Card.Subtitle>이론부터 위생, 품질관리까지</Card.Subtitle>
+              <Card.Title>품질중시성</Card.Title>
+              <Card.Subtitle>좋은 맛과 향 추구</Card.Subtitle>
             </Card.Header>
             <Card.Content>
-              <Typography variant="body" color="secondary">발효과학, 위생 관리, Q/A 세션으로 지식을 체계적으로 쌓습니다.</Typography>
+              <Typography variant="body" color="secondary">좋은 재료를 사용하여 고품질의 술이 만들어지도록 합니다.</Typography>
             </Card.Content>
           </Card>
         </Section.Grid>
       </Section>
 
       <Section id="activities" variant="surface" align="left" padding="md" className="responsive-padding">
-        <Section.Header title="주요 활동" subtitle="월별 프로그램으로 꾸준히 즐겨요" align="left" />
+        <Section.Header title="주요 활동" align="left" />
         <Section.Content>
           <Carousel autoPlay interval={4500} showDots showArrows infinite className="mobile-carousel">
-            <Card variant="elevated" padding="none" hover image={{ src: 'https://images.unsplash.com/photo-1527169402691-feff5539e52c?q=80&w=1600&auto=format&fit=crop', alt: '양조 세션', height: '360px', objectFit: 'cover' }} className="mobile-card">
+            <Card variant="elevated" padding="none" hover image={{ src: 'https://images.unsplash.com/photo-1527169402691-feff5539e52c?q=80&w=1600&auto=format&fit=crop', alt: '정기 양조', height: '360px', objectFit: 'cover' }} className="mobile-card">
               <Card.Content>
                 <Card.Header>
-                  <Card.Title>정기 양조 세션</Card.Title>
-                  <Card.Subtitle>Recipe 설계부터 브루잉까지</Card.Subtitle>
+                  <Card.Title>정기 양조</Card.Title>
+                  <Card.Subtitle>맥주, 와인, 막걸리, 위스키, 브랜디</Card.Subtitle>
                 </Card.Header>
-                <Typography variant="body" color="secondary">스타일별 레시피를 실험하고 기록합니다.</Typography>
+                <Typography variant="body" color="secondary">Moonshine만의 특색 있는 레시피로 직접 만들어보는 술은 잊지 못할 경험으로 남을 것입니다.</Typography>
               </Card.Content>
             </Card>
 
             <Card variant="elevated" padding="none" hover image={{ src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1600&auto=format&fit=crop', alt: '테이스팅', height: '360px', objectFit: 'cover' }} className="mobile-card">
               <Card.Content>
                 <Card.Header>
-                  <Card.Title>테이스팅 & 페어링</Card.Title>
-                  <Card.Subtitle>센서리 훈련</Card.Subtitle>
+                  <Card.Title>테이스팅</Card.Title>
+                  <Card.Subtitle>테이스팅 노트 작성과 연구</Card.Subtitle>
                 </Card.Header>
-                <Typography variant="body" color="secondary">노트 작성과 음식 페어링을 함께 연구합니다.</Typography>
+                <Typography variant="body" color="secondary">다양한 주종의 향과 맛을 경험하며 느낀 점들을 부원들과 공유하세요.</Typography>
               </Card.Content>
             </Card>
 
-            <Card variant="elevated" padding="none" hover image={{ src: 'https://images.unsplash.com/photo-1600850056064-cbaf9f28167f?q=80&w=1600&auto=format&fit=crop', alt: '스터디', height: '360px', objectFit: 'cover' }} className="mobile-card">
+            <Card variant="elevated" padding="none" hover image={{ src: 'https://images.unsplash.com/photo-1600850056064-cbaf9f28167f?q=80&w=1600&auto=format&fit=crop', alt: '양조학 스터디', height: '360px', objectFit: 'cover' }} className="mobile-card">
               <Card.Content>
                 <Card.Header>
-                  <Card.Title>양조 스터디</Card.Title>
-                  <Card.Subtitle>발효과학 · 위생 · 품질관리</Card.Subtitle>
+                  <Card.Title>양조학 스터디</Card.Title>
+                  <Card.Subtitle>양조장 및 증류소 방문</Card.Subtitle>
                 </Card.Header>
-                <Typography variant="body" color="secondary">핵심 이론과 실무 노하우를 함께 나눕니다.</Typography>
+                <Typography variant="body" color="secondary">국내 유명 양조장 및 증류소에 방문하여 양조 과정을 알아보는 뜻깊은 시간을 가집니다.</Typography>
+              </Card.Content>
+            </Card>
+
+            <Card variant="elevated" padding="none" hover image={{ src: 'https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=1600&auto=format&fit=crop', alt: '친목 활동', height: '360px', objectFit: 'cover' }} className="mobile-card">
+              <Card.Content>
+                <Card.Header>
+                  <Card.Title>친목 활동</Card.Title>
+                  <Card.Subtitle>세련되고 조용한 모임</Card.Subtitle>
+                </Card.Header>
+                <Typography variant="body" color="secondary">취하려고 마시는 술이 아닌, 술의 맛과 향을 즐길 수 있는 회식과 MT를 추구하고 있습니다.</Typography>
               </Card.Content>
             </Card>
           </Carousel>

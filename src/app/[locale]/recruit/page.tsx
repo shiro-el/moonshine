@@ -22,8 +22,8 @@ const PageContainer = styled.div`
 
 const CheckboxGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
   gap: ${theme.spacing.lg};
+  grid-template-columns: repeat(2, 1fr);
 
   @media (min-width: ${theme.breakpoints.md}) {
     grid-template-columns: repeat(2, 1fr);

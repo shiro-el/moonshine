@@ -45,3 +45,6 @@ COMMENT ON COLUMN recruit_applications.interview_times IS '선택된 면접 가�
 COMMENT ON COLUMN recruit_applications.additional_comments IS '추가 사항 (최대 500자)';
 COMMENT ON COLUMN recruit_applications.interview_notes IS '면접 관련 참고사항 (최대 300자)';
 COMMENT ON COLUMN recruit_applications.submitted_at IS '지원서 제출 시간';
+
+
+

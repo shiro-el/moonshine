@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
+import { useTranslations, useLocale } from 'next-intl';
 import { Link, LanguageSwitcher } from './index';
 import { theme } from '@/theme/theme';
 
@@ -120,6 +121,8 @@ export const Navigation: React.FC<NavigationProps> = ({
   transparent = false,
   className,
 }) => {
+  const t = useTranslations('navigation');
+  const locale = useLocale();
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -135,13 +138,13 @@ export const Navigation: React.FC<NavigationProps> = ({
     <NavContainer $transparent={transparent} $scrolled={isScrolled} className={className}>
       <NavContent>
         <Logo>
-          <Link href="/">{logo}</Link>
+          <Link href={`/${locale}`}>{logo}</Link>
         </Logo>
 
         <RightMenu>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <LanguageSwitcher/>
-          <MenuItem href="/recruit">지원</MenuItem>
+          <MenuItem href={`/${locale}/recruit`}>{t('recruit')}</MenuItem>
           </div>
         </RightMenu>
       </NavContent>

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import { useTranslations } from 'next-intl';
 import { 
   Form, 
@@ -13,6 +14,22 @@ import {
   Navigation,
   Section 
 } from '@/components';
+import { theme } from '@/theme/theme';
+
+const CheckboxGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: ${theme.spacing.lg};
+  
+  @media (min-width: ${theme.breakpoints.md}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: ${theme.breakpoints.lg}) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+`;
+
 interface FormData {
   name: string;
   studentId: string;
@@ -211,13 +228,13 @@ export default function RecruitPage() {
   };
 
   return (
-    <>
+    <div style={{ paddingTop: '80px' }}>
       <Navigation
         transparent
         logo={<Typography variant="h3" color="white">Moonshine</Typography>}
       />
 
-      <Section variant="default" align="center" padding="md" className="responsive-padding section-with-top-margin">
+      <Section variant="default" align="center" padding="md">
         <Section.Content>
           <Typography variant="h1" color="white">{t('recruit.title')}</Typography>
           <Typography variant="body" color="secondary">{t('recruit.subtitle')}</Typography>
@@ -235,7 +252,7 @@ export default function RecruitPage() {
 
               <Form.Section>
                 <Typography variant="h3" color="white">{t('recruit.form.basicInfo')}</Typography>
-                <Form.Row className="flex-col md:flex-row gap-4">
+                <Form.Row>
                   <Input
                     label={`${t('recruit.form.name')} *`}
                     placeholder="홍길동"
@@ -244,7 +261,7 @@ export default function RecruitPage() {
                     error={errors.name}
                     required
                     fullWidth
-                    className="touch-friendly"
+
                   />
                   <Input
                     label={`${t('recruit.form.studentId')} *`}
@@ -254,7 +271,7 @@ export default function RecruitPage() {
                     error={errors.studentId}
                     required
                     fullWidth
-                    className="touch-friendly"
+
                   />
                 </Form.Row>
                 <Input
@@ -265,7 +282,7 @@ export default function RecruitPage() {
                   error={errors.contact}
                   required
                   fullWidth
-                  className="touch-friendly"
+
                 />
               </Form.Section>
 
@@ -282,7 +299,7 @@ export default function RecruitPage() {
                   showCharacterCount
                   required
                   fullWidth
-                  className="touch-friendly"
+
                 />
               </Form.Section>
 
@@ -299,7 +316,7 @@ export default function RecruitPage() {
                   showCharacterCount
                   required
                   fullWidth
-                  className="touch-friendly"
+
                 />
               </Form.Section>
 
@@ -309,7 +326,7 @@ export default function RecruitPage() {
                 {errors.interviewTimes && (
                   <Typography variant="small" color="secondary">{errors.interviewTimes}</Typography>
                 )}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <CheckboxGrid>
                   {interviewTimeOptions.map((time) => (
                     <Checkbox
                       key={time}
@@ -317,10 +334,9 @@ export default function RecruitPage() {
                       checked={formData.interviewTimes[time as keyof typeof formData.interviewTimes]}
                       onChange={(e) => handleInterviewTimeChange(time, e.target.checked)}
                       name="interviewTimes"
-                      className="touch-friendly"
                     />
                   ))}
-                </div>
+                </CheckboxGrid>
               </Form.Section>
 
               <Form.Section>
@@ -334,7 +350,7 @@ export default function RecruitPage() {
                   maxLength={500}
                   showCharacterCount
                   fullWidth
-                  className="touch-friendly"
+
                 />
                 <Textarea
                   label={t('recruit.form.interviewNotesLabel')}
@@ -345,18 +361,18 @@ export default function RecruitPage() {
                   maxLength={300}
                   showCharacterCount
                   fullWidth
-                  className="touch-friendly"
+
                 />
               </Form.Section>
 
-              <Form.Actions className="flex flex-col md:flex-row gap-4 justify-center">
-                <Button variant="secondary" type="button" disabled={isSubmitting} className="touch-friendly w-full md:w-auto">{t('common.cancel')}</Button>
+              <Form.Actions>
+                <Button variant="secondary" type="button" disabled={isSubmitting}>{t('common.cancel')}</Button>
                 <Button 
                   variant="primary" 
                   type="submit" 
                   loading={isSubmitting}
                   disabled={isSubmitting}
-                  className="touch-friendly w-full md:w-auto"
+
                 >
                   {isSubmitting ? t('recruit.form.submitting') : t('recruit.form.submitButton')}
                 </Button>
@@ -371,6 +387,6 @@ export default function RecruitPage() {
           <Typography variant="body" color="secondary">{t('recruit.form.contactInfo')}</Typography>
         </Section.Content>
       </Section>
-    </>
+    </div>
   );
 }

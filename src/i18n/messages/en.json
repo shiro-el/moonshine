@@ -64,7 +64,7 @@
     "subtitle": "We are waiting for those who are passionate about brewing",
     "form": {
       "title": "New Member Application",
-      "subtitle": "Hi",
+      "subtitle": "We are waiting for those who are passionate about brewing",
       "basicInfo": "Basic Information",
       "name": "Name",
       "studentId": "Student ID",
@@ -76,7 +76,7 @@
       "activitiesLabel": "Please write about the activities you want to do after joining Moonshine.",
       "activitiesPlaceholder": "You can write about activities that Moonshine is already doing, or new activities you want to do.",
       "interview": "Interview Schedule",
-      "interviewNote": "Interviews will be conducted in person at Taeul Hall 3110.",
+      "interviewNote": "Interviews will be conducted in person at Taeul Hall 3110. Please check all available times.",
       "additional": "Additional Information",
       "additionalLabel": "If you have anything additional to say, please write it down.",
       "additionalPlaceholder": "Please write freely.",
@@ -84,7 +84,7 @@
       "interviewNotesPlaceholder": "Example: I checked 21:00 ~ 22:00, but I'm only available after 21:30, etc.",
       "submitButton": "Submit Application",
       "submitting": "Submitting...",
-      "contactInfo": "If you have any questions, please contact contact@moonshine.club"
+      "contactInfo": "If you have any questions, please contact moonshine.kaist@gmail.com"
     }
   },
   "common": {

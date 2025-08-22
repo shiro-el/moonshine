@@ -1,0 +1,101 @@
+{
+  "navigation": {
+    "home": "홈",
+    "about": "소개",
+    "activities": "활동",
+    "recruit": "지원하기"
+  },
+  "hero": {
+    "subtitle": "양조 동아리 문샤인",
+    "title": "Moonshine Brewing Club",
+    "description": "문샤인은 양조주에 열정을 가진 사람들이 함께 배우고, 만들고, 나누는 양조 동아리입니다.",
+    "primaryButton": "지원하기",
+    "secondaryButton": "활동 살펴보기"
+  },
+  "about": {
+    "title": "Moonshine이 추구하는 가치",
+    "diversity": {
+      "title": "다양성",
+      "subtitle": "맥주부터 브랜디까지",
+      "description": "주종에 상관 없이 다양한 주류를 양조합니다."
+    },
+    "creativity": {
+      "title": "창의성",
+      "subtitle": "창의적인 레시피 작성",
+      "description": "부원들의 아이디어가 반영된 창의적인 레시피를 시도합니다."
+    },
+    "quality": {
+      "title": "품질중시성",
+      "subtitle": "좋은 맛과 향 추구",
+      "description": "좋은 재료를 사용하여 고품질의 술이 만들어지도록 합니다."
+    }
+  },
+  "activities": {
+    "title": "주요 활동",
+    "tasting": {
+      "title": "테이스팅",
+      "subtitle": "테이스팅 노트 작성과 연구",
+      "description": "다양한 주종의 향과 맛을 경험하며 느낀 점들을 부원들과 공유하세요."
+    },
+    "study": {
+      "title": "양조학 스터디",
+      "subtitle": "양조장 및 증류소 방문",
+      "description": "국내 유명 양조장 및 증류소에 방문하여 양조 과정을 알아보는 뜻깊은 시간을 가집니다."
+    },
+    "brewing": {
+      "title": "정기 양조",
+      "subtitle": "맥주, 와인, 막걸리, 위스키, 브랜디",
+      "description": "Moonshine만의 특색 있는 레시피로 직접 만들어보는 술은 잊지 못할 경험으로 남을 것입니다."
+    },
+    "social": {
+      "title": "친목 활동",
+      "subtitle": "세련되고 조용한 모임",
+      "description": "취하려고 마시는 술이 아닌, 술의 맛과 향을 즐길 수 있는 회식과 MT를 추구하고 있습니다."
+    }
+  },
+  "apply": {
+    "title": "신입 회원 모집",
+    "subtitle": "함께 양조할 준비 되셨나요?",
+    "description": "문샤인 양조 동아리에 가입하고 싶으시다면 아래 버튼을 클릭하여 지원서를 작성해주세요.",
+    "button": "지원서 작성하기"
+  },
+  "recruit": {
+    "title": "Moonshine 신입 회원 모집",
+    "subtitle": "양조에 열정을 가진 여러분을 기다리고 있습니다",
+    "form": {
+      "title": "신입 회원 지원서",
+      "subtitle": "ㅎㅇ",
+      "basicInfo": "기본 정보",
+      "name": "이름",
+      "studentId": "학번",
+      "contact": "연락처",
+      "motivation": "지원 동기",
+      "motivationLabel": "Moonshine에 지원하게 된 동기를 작성해 주세요.",
+      "motivationPlaceholder": "양조에 대한 관심, Moonshine을 선택한 이유 등을 자유롭게 작성해주세요.",
+      "activities": "활동 계획",
+      "activitiesLabel": "Moonshine에 들어와서 하고 싶은 활동을 작성해 주세요.",
+      "activitiesPlaceholder": "이미 Moonshine에서 하고 있는 활동을 적으셔도 되고, 새롭게 하고 싶은 활동을 적으셔도 됩니다.",
+      "interview": "면접 일정",
+      "interviewNote": "면접은 태울관 3110호에서 대면으로 진행됩니다.",
+      "additional": "추가 사항",
+      "additionalLabel": "추가로 하고 싶은 말이 있다면 작성해 주세요.",
+      "additionalPlaceholder": "자유롭게 작성해주세요.",
+      "interviewNotesLabel": "면접 시간과 관련해서 참고해야 하는 것이 있다면 입력해 주세요.",
+      "interviewNotesPlaceholder": "예시: 21:00 ~ 22:00에 된다고 체크했는데, 21:30 이후로만 가능해요 등",
+      "submitButton": "지원서 제출",
+      "submitting": "제출 중...",
+      "contactInfo": "문의사항이 있으시면 contact@moonshine.club으로 연락주세요"
+    }
+  },
+  "common": {
+    "loading": "로딩 중...",
+    "error": "오류가 발생했습니다",
+    "submit": "제출",
+    "cancel": "취소",
+    "close": "닫기",
+    "save": "저장",
+    "edit": "편집",
+    "delete": "삭제",
+    "confirm": "확인"
+  }
+}

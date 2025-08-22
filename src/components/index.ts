@@ -7,6 +7,7 @@ export { Carousel } from './Carousel';
 export { Navigation } from './Navigation';
 export { Hero } from './Hero';
 export { Section } from './Section';
+export { LanguageSwitcher } from './LanguageSwitcher';
 
 // 폼 컴포넌트들
 export { Input } from './Input';

@@ -1,0 +1,101 @@
+{
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "activities": "Activities",
+    "recruit": "Apply"
+  },
+  "hero": {
+    "subtitle": "Moonshine Brewing Club",
+    "title": "Moonshine Brewing Club",
+    "description": "Moonshine is a brewing club where people passionate about alcoholic beverages learn, create, and share together.",
+    "primaryButton": "Apply Now",
+    "secondaryButton": "Explore Activities"
+  },
+  "about": {
+    "title": "Values that Moonshine Pursues",
+    "diversity": {
+      "title": "Diversity",
+      "subtitle": "From Beer to Brandy",
+      "description": "We brew various types of alcoholic beverages regardless of category."
+    },
+    "creativity": {
+      "title": "Creativity",
+      "subtitle": "Creative Recipe Development",
+      "description": "We try creative recipes that reflect the ideas of our members."
+    },
+    "quality": {
+      "title": "Quality Focus",
+      "subtitle": "Pursuing Good Taste and Aroma",
+      "description": "We use good ingredients to ensure high-quality alcohol is produced."
+    }
+  },
+  "activities": {
+    "title": "Main Activities",
+    "tasting": {
+      "title": "Tasting",
+      "subtitle": "Tasting Notes and Research",
+      "description": "Experience the aromas and flavors of various alcoholic beverages and share your impressions with members."
+    },
+    "study": {
+      "title": "Brewing Studies",
+      "subtitle": "Brewery and Distillery Visits",
+      "description": "Visit famous domestic breweries and distilleries to learn about the brewing process in meaningful sessions."
+    },
+    "brewing": {
+      "title": "Regular Brewing",
+      "subtitle": "Beer, Wine, Makgeolli, Whiskey, Brandy",
+      "description": "Making alcohol with Moonshine's unique recipes will remain an unforgettable experience."
+    },
+    "social": {
+      "title": "Social Activities",
+      "subtitle": "Sophisticated and Quiet Gatherings",
+      "description": "We pursue dinners and retreats where you can enjoy the taste and aroma of alcohol, not drinking to get drunk."
+    }
+  },
+  "apply": {
+    "title": "New Member Recruitment",
+    "subtitle": "Ready to brew together?",
+    "description": "If you want to join the Moonshine brewing club, please click the button below to fill out the application form.",
+    "button": "Fill Out Application"
+  },
+  "recruit": {
+    "title": "Moonshine New Member Recruitment",
+    "subtitle": "We are waiting for those who are passionate about brewing",
+    "form": {
+      "title": "New Member Application",
+      "subtitle": "Hi",
+      "basicInfo": "Basic Information",
+      "name": "Name",
+      "studentId": "Student ID",
+      "contact": "Contact",
+      "motivation": "Motivation",
+      "motivationLabel": "Please write your motivation for applying to Moonshine.",
+      "motivationPlaceholder": "Please freely write about your interest in brewing, reasons for choosing Moonshine, etc.",
+      "activities": "Activity Plan",
+      "activitiesLabel": "Please write about the activities you want to do after joining Moonshine.",
+      "activitiesPlaceholder": "You can write about activities that Moonshine is already doing, or new activities you want to do.",
+      "interview": "Interview Schedule",
+      "interviewNote": "Interviews will be conducted in person at Taeul Hall 3110.",
+      "additional": "Additional Information",
+      "additionalLabel": "If you have anything additional to say, please write it down.",
+      "additionalPlaceholder": "Please write freely.",
+      "interviewNotesLabel": "If there's anything to note regarding interview times, please enter it.",
+      "interviewNotesPlaceholder": "Example: I checked 21:00 ~ 22:00, but I'm only available after 21:30, etc.",
+      "submitButton": "Submit Application",
+      "submitting": "Submitting...",
+      "contactInfo": "If you have any questions, please contact contact@moonshine.club"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "close": "Close",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm"
+  }
+}

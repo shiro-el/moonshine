@@ -2,17 +2,13 @@
 
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
-import { Link, Button, Typography } from './index';
+import { Link, LanguageSwitcher } from './index';
 import { theme } from '@/theme/theme';
 
 interface NavigationProps {
   logo?: React.ReactNode;
   transparent?: boolean;
   className?: string;
-}
-
-interface MobileMenuProps {
-  $isOpen: boolean;
 }
 
 const NavContainer = styled.nav<{ $transparent: boolean; $scrolled: boolean }>`
@@ -91,7 +87,8 @@ const Logo = styled.div`
 
 const RightMenu = styled.div`
   display: flex;
-  align-items: center;
+  height: 100%;
+  align-items: flex-end;
   gap: ${theme.spacing.lg};
 `;
 
@@ -118,58 +115,21 @@ const MenuItem = styled(Link)`
   }
 `;
 
-const MobileMenuButton = styled.button`
-  display: none;
-  background: none;
-  border: none;
-  color: ${theme.colors.text.white};
-  cursor: pointer;
-  padding: ${theme.spacing.md};
-  min-width: 44px;
-  min-height: 44px;
-  border-radius: ${theme.borderRadius.sm};
-  transition: ${theme.transitions.fast};
-  
-  &:hover {
-    background: rgba(255, 255, 255, 0.1);
-  }
-  
-  &:active {
-    background: rgba(255, 255, 255, 0.2);
-  }
-  
-  @media (max-width: ${theme.breakpoints.md}) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  svg {
-    width: 24px;
-    height: 24px;
-  }
-`;
-
 export const Navigation: React.FC<NavigationProps> = ({
   logo = 'Moonshine',
   transparent = false,
   className,
 }) => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
-      // 스크롤 시 모바일 메뉴 닫기
-      if (isMobileMenuOpen) {
-        setIsMobileMenuOpen(false);
-      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isMobileMenuOpen]);
+  }, []);
 
   return (
     <NavContainer $transparent={transparent} $scrolled={isScrolled} className={className}>
@@ -178,11 +138,12 @@ export const Navigation: React.FC<NavigationProps> = ({
           <Link href="/">{logo}</Link>
         </Logo>
 
-        <Logo>
-          <Link href="/recruit">
-            <Typography variant="h3" color="white">지원</Typography>
-          </Link>
-        </Logo>
+        <RightMenu>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <LanguageSwitcher/>
+          <MenuItem href="/recruit">지원</MenuItem>
+          </div>
+        </RightMenu>
       </NavContent>
     </NavContainer>
   );

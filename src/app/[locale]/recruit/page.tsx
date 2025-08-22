@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { 
   Form, 
   Input, 
@@ -55,6 +56,8 @@ const interviewTimeOptions = [
 ];
 
 export default function RecruitPage() {
+  const t = useTranslations();
+  
   const [formData, setFormData] = useState<FormData>({
     name: '',
     studentId: '',
@@ -216,8 +219,8 @@ export default function RecruitPage() {
 
       <Section variant="default" align="center" padding="md" className="responsive-padding section-with-top-margin">
         <Section.Content>
-          <Typography variant="h1" color="white">Moonshine 신입 회원 모집</Typography>
-          <Typography variant="body" color="secondary">양조에 열정을 가진 여러분을 기다리고 있습니다</Typography>
+          <Typography variant="h1" color="white">{t('recruit.title')}</Typography>
+          <Typography variant="body" color="secondary">{t('recruit.subtitle')}</Typography>
         </Section.Content>
       </Section>
 
@@ -225,16 +228,16 @@ export default function RecruitPage() {
         <Section.Content>
           <Card variant="elevated" padding="lg" className="mobile-card">
             <Form onSubmit={handleSubmit} fullWidth className="mobile-form" gap="xl">
-              <Form.Title>신입 회원 지원서</Form.Title>
+              <Form.Title>{t('recruit.form.title')}</Form.Title>
               <Form.Subtitle>
-                ㅎㅇ
+                {t('recruit.form.subtitle')}
               </Form.Subtitle>
 
               <Form.Section>
-                <Typography variant="h3" color="white">기본 정보</Typography>
+                <Typography variant="h3" color="white">{t('recruit.form.basicInfo')}</Typography>
                 <Form.Row className="flex-col md:flex-row gap-4">
                   <Input
-                    label="이름 *"
+                    label={`${t('recruit.form.name')} *`}
                     placeholder="홍길동"
                     value={formData.name}
                     onChange={(e) => handleInputChange('name', e.target.value)}
@@ -244,7 +247,7 @@ export default function RecruitPage() {
                     className="touch-friendly"
                   />
                   <Input
-                    label="학번 *"
+                    label={`${t('recruit.form.studentId')} *`}
                     placeholder="20250000"
                     value={formData.studentId}
                     onChange={(e) => handleInputChange('studentId', e.target.value)}
@@ -255,7 +258,7 @@ export default function RecruitPage() {
                   />
                 </Form.Row>
                 <Input
-                  label="연락처 *"
+                  label={`${t('recruit.form.contact')} *`}
                   placeholder="010-xxxx-xxxx"
                   value={formData.contact}
                   onChange={(e) => handleInputChange('contact', e.target.value)}
@@ -267,10 +270,10 @@ export default function RecruitPage() {
               </Form.Section>
 
               <Form.Section>
-                <Typography variant="h3" color="white">지원 동기</Typography>
+                <Typography variant="h3" color="white">{t('recruit.form.motivation')}</Typography>
                 <Textarea
-                  label="Moonshine에 지원하게 된 동기를 작성해 주세요. *"
-                  placeholder="양조에 대한 관심, Moonshine을 선택한 이유 등을 자유롭게 작성해주세요."
+                  label={`${t('recruit.form.motivationLabel')} *`}
+                  placeholder={t('recruit.form.motivationPlaceholder')}
                   value={formData.motivation}
                   onChange={(e) => handleInputChange('motivation', e.target.value)}
                   error={errors.motivation}
@@ -284,10 +287,10 @@ export default function RecruitPage() {
               </Form.Section>
 
               <Form.Section>
-                <Typography variant="h3" color="white">활동 계획</Typography>
+                <Typography variant="h3" color="white">{t('recruit.form.activities')}</Typography>
                 <Textarea
-                  label="Moonshine에 들어와서 하고 싶은 활동을 작성해 주세요. *"
-                  placeholder="이미 Moonshine에서 하고 있는 활동을 적으셔도 되고, 새롭게 하고 싶은 활동을 적으셔도 됩니다."
+                  label={`${t('recruit.form.activitiesLabel')} *`}
+                  placeholder={t('recruit.form.activitiesPlaceholder')}
                   value={formData.activities}
                   onChange={(e) => handleInputChange('activities', e.target.value)}
                   error={errors.activities}
@@ -301,8 +304,8 @@ export default function RecruitPage() {
               </Form.Section>
 
               <Form.Section>
-                <Typography variant="h3" color="white">면접 일정</Typography>
-                <Typography variant="body" color="secondary">면접은 태울관 3110호에서 대면으로 진행됩니다.</Typography>
+                <Typography variant="h3" color="white">{t('recruit.form.interview')}</Typography>
+                <Typography variant="body" color="secondary">{t('recruit.form.interviewNote')}</Typography>
                 {errors.interviewTimes && (
                   <Typography variant="small" color="secondary">{errors.interviewTimes}</Typography>
                 )}
@@ -321,10 +324,10 @@ export default function RecruitPage() {
               </Form.Section>
 
               <Form.Section>
-                <Typography variant="h3" color="white">추가 사항</Typography>
+                <Typography variant="h3" color="white">{t('recruit.form.additional')}</Typography>
                 <Textarea
-                  label="추가로 하고 싶은 말이 있다면 작성해 주세요."
-                  placeholder="자유롭게 작성해주세요."
+                  label={t('recruit.form.additionalLabel')}
+                  placeholder={t('recruit.form.additionalPlaceholder')}
                   value={formData.additionalComments}
                   onChange={(e) => handleInputChange('additionalComments', e.target.value)}
                   rows={3}
@@ -334,8 +337,8 @@ export default function RecruitPage() {
                   className="touch-friendly"
                 />
                 <Textarea
-                  label="면접 시간과 관련해서 참고해야 하는 것이 있다면 입력해 주세요."
-                  placeholder="예시: 21:00 ~ 22:00에 된다고 체크했는데, 21:30 이후로만 가능해요 등"
+                  label={t('recruit.form.interviewNotesLabel')}
+                  placeholder={t('recruit.form.interviewNotesPlaceholder')}
                   value={formData.interviewNotes}
                   onChange={(e) => handleInputChange('interviewNotes', e.target.value)}
                   rows={3}
@@ -347,7 +350,7 @@ export default function RecruitPage() {
               </Form.Section>
 
               <Form.Actions className="flex flex-col md:flex-row gap-4 justify-center">
-                <Button variant="secondary" type="button" disabled={isSubmitting} className="touch-friendly w-full md:w-auto">취소</Button>
+                <Button variant="secondary" type="button" disabled={isSubmitting} className="touch-friendly w-full md:w-auto">{t('common.cancel')}</Button>
                 <Button 
                   variant="primary" 
                   type="submit" 
@@ -355,7 +358,7 @@ export default function RecruitPage() {
                   disabled={isSubmitting}
                   className="touch-friendly w-full md:w-auto"
                 >
-                  {isSubmitting ? '제출 중...' : '지원서 제출'}
+                  {isSubmitting ? t('recruit.form.submitting') : t('recruit.form.submitButton')}
                 </Button>
               </Form.Actions>
             </Form>
@@ -365,7 +368,7 @@ export default function RecruitPage() {
 
       <Section variant="transparent" align="center" padding="sm" className="responsive-padding">
         <Section.Content>
-          <Typography variant="body" color="secondary">문의사항이 있으시면 contact@moonshine.club으로 연락주세요</Typography>
+          <Typography variant="body" color="secondary">{t('recruit.form.contactInfo')}</Typography>
         </Section.Content>
       </Section>
     </>

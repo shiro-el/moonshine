@@ -59,17 +59,7 @@ export default function Home() {
         <Section.Header title="주요 활동" align="left" />
         <Section.Content>
           <Carousel autoPlay interval={4500} showDots showArrows infinite className="mobile-carousel">
-            <Card variant="elevated" padding="none" hover image={{ src: 'https://images.unsplash.com/photo-1527169402691-feff5539e52c?q=80&w=1600&auto=format&fit=crop', alt: '정기 양조', height: '360px', objectFit: 'cover' }} className="mobile-card">
-              <Card.Content>
-                <Card.Header>
-                  <Card.Title>정기 양조</Card.Title>
-                  <Card.Subtitle>맥주, 와인, 막걸리, 위스키, 브랜디</Card.Subtitle>
-                </Card.Header>
-                <Typography variant="body" color="secondary">Moonshine만의 특색 있는 레시피로 직접 만들어보는 술은 잊지 못할 경험으로 남을 것입니다.</Typography>
-              </Card.Content>
-            </Card>
-
-            <Card variant="elevated" padding="none" hover image={{ src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1600&auto=format&fit=crop', alt: '테이스팅', height: '360px', objectFit: 'cover' }} className="mobile-card">
+            <Card variant="elevated" padding="none" hover image={{ src: '/2.jpeg', alt: '테이스팅', height: '360px', objectFit: 'cover' }} className="mobile-card">
               <Card.Content>
                 <Card.Header>
                   <Card.Title>테이스팅</Card.Title>
@@ -79,7 +69,7 @@ export default function Home() {
               </Card.Content>
             </Card>
 
-            <Card variant="elevated" padding="none" hover image={{ src: 'https://images.unsplash.com/photo-1600850056064-cbaf9f28167f?q=80&w=1600&auto=format&fit=crop', alt: '양조학 스터디', height: '360px', objectFit: 'cover' }} className="mobile-card">
+            <Card variant="elevated" padding="none" hover image={{ src: '/3.jpeg', alt: '양조학 스터디', height: '360px', objectFit: 'cover' }} className="mobile-card">
               <Card.Content>
                 <Card.Header>
                   <Card.Title>양조학 스터디</Card.Title>
@@ -88,8 +78,17 @@ export default function Home() {
                 <Typography variant="body" color="secondary">국내 유명 양조장 및 증류소에 방문하여 양조 과정을 알아보는 뜻깊은 시간을 가집니다.</Typography>
               </Card.Content>
             </Card>
+            <Card variant="elevated" padding="none" hover image={{ src: '/1.jpeg', alt: '정기 양조', height: '360px', objectFit: 'cover' }} className="mobile-card">
+              <Card.Content>
+                <Card.Header>
+                  <Card.Title>정기 양조</Card.Title>
+                  <Card.Subtitle>맥주, 와인, 막걸리, 위스키, 브랜디</Card.Subtitle>
+                </Card.Header>
+                <Typography variant="body" color="secondary">Moonshine만의 특색 있는 레시피로 직접 만들어보는 술은 잊지 못할 경험으로 남을 것입니다.</Typography>
+              </Card.Content>
+            </Card>
 
-            <Card variant="elevated" padding="none" hover image={{ src: 'https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=1600&auto=format&fit=crop', alt: '친목 활동', height: '360px', objectFit: 'cover' }} className="mobile-card">
+            <Card variant="elevated" padding="none" hover image={{ src: '/4.jpeg', alt: '친목 활동', height: '360px', objectFit: 'cover' }} className="mobile-card">
               <Card.Content>
                 <Card.Header>
                   <Card.Title>친목 활동</Card.Title>

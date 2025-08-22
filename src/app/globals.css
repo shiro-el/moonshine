@@ -232,7 +232,9 @@
 /* Responsive hero adjustments */
 @media (max-width: 768px) {
   .mobile-hero {
-    min-height: 60vh;
+    min-height: 100vh;
+    height: 100vh;
+    height: 100dvh; /* dynamic viewport height */
     padding: var(--spacing-lg) var(--spacing-md);
   }
   
@@ -243,6 +245,16 @@
   .mobile-hero .hero-buttons {
     flex-direction: column;
     gap: var(--spacing-md);
+  }
+}
+
+/* iOS Safari specific viewport height fixes */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) {
+    .mobile-hero {
+      height: -webkit-fill-available;
+      min-height: -webkit-fill-available;
+    }
   }
 }
 

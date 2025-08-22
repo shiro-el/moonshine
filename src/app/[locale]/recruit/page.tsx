@@ -241,10 +241,10 @@ export default function RecruitPage() {
         </Section.Content>
       </Section>
 
-      <Section variant="default" align="left" padding="md" className="responsive-padding">
+      <Section variant="default" align="left" padding="md">
         <Section.Content>
-          <Card variant="elevated" padding="lg" className="mobile-card">
-            <Form onSubmit={handleSubmit} fullWidth className="mobile-form" gap="xl">
+          <Card variant="elevated" padding="lg">
+            <Form onSubmit={handleSubmit} fullWidth gap="xl">
               <Form.Title>{t('recruit.form.title')}</Form.Title>
               <Form.Subtitle>
                 {t('recruit.form.subtitle')}
@@ -382,7 +382,7 @@ export default function RecruitPage() {
         </Section.Content>
       </Section>
 
-      <Section variant="transparent" align="center" padding="sm" className="responsive-padding">
+      <Section variant="transparent" align="center" padding="sm">
         <Section.Content>
           <Typography variant="body" color="secondary">{t('recruit.form.contactInfo')}</Typography>
         </Section.Content>

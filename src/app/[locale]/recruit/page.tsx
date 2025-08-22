@@ -498,13 +498,6 @@ export default function RecruitPage() {
 
                 <Form.Actions>
                   <Button
-                    variant="secondary"
-                    type="button"
-                    disabled={isSubmitting}
-                  >
-                    {t("common.cancel")}
-                  </Button>
-                  <Button
                     variant="primary"
                     type="submit"
                     loading={isSubmitting}

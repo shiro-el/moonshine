@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { ThemeProvider } from "../providers/ThemeProvider";
+import StyledComponentsRegistry from "@/lib/registry";
 import { locales, type Locale } from "@/i18n/config";
 
 const inter = Inter({
@@ -67,11 +68,13 @@ export default async function LocaleLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
       <body className={`${inter.variable} antialiased`}>
-        <NextIntlClientProvider messages={messages} locale={locale}>
-          <ThemeProvider>
-            {children}
-          </ThemeProvider>
-        </NextIntlClientProvider>
+        <StyledComponentsRegistry>
+          <NextIntlClientProvider messages={messages} locale={locale}>
+            <ThemeProvider>
+              {children}
+            </ThemeProvider>
+          </NextIntlClientProvider>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );

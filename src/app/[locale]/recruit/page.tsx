@@ -18,6 +18,62 @@ import { theme } from "@/theme/theme";
 
 const PageContainer = styled.div`
   padding-top: 80px;
+  
+  @media (max-width: ${theme.breakpoints.md}) {
+    padding-top: 60px;
+  }
+`;
+
+const ResponsiveSection = styled(Section)`
+  @media (max-width: ${theme.breakpoints.md}) {
+    padding: ${theme.spacing.lg} ${theme.spacing.md} !important;
+    
+    h1 {
+      font-size: 2.5rem !important;
+      line-height: 1.2 !important;
+      margin-bottom: 1rem;
+    }
+    
+    h2 {
+      font-size: 2rem !important;
+      line-height: 1.3 !important;
+      margin-bottom: 1rem;
+    }
+    
+    h3 {
+      font-size: 1.5rem !important;
+      line-height: 1.4 !important;
+      margin-bottom: 0.75rem;
+    }
+    
+    p {
+      font-size: 1rem !important;
+      line-height: 1.6 !important;
+    }
+  }
+`;
+
+const MobileCard = styled(Card)`
+  @media (max-width: ${theme.breakpoints.md}) {
+    padding: ${theme.spacing.md} !important;
+    
+    h3 {
+      font-size: 1.25rem !important;
+      line-height: 1.4 !important;
+      margin-bottom: 0.5rem;
+    }
+    
+    h4 {
+      font-size: 1rem !important;
+      line-height: 1.5 !important;
+      margin-bottom: 0.75rem;
+    }
+    
+    p {
+      font-size: 0.95rem !important;
+      line-height: 1.6 !important;
+    }
+  }
 `;
 
 const CheckboxGrid = styled.div`
@@ -51,22 +107,80 @@ const CheckboxGrid = styled.div`
 const PeriodEndedTitle = styled(Typography)`
   text-align: center;
   margin-bottom: 1rem;
+  
+  @media (max-width: ${theme.breakpoints.md}) {
+    font-size: 2rem !important;
+    line-height: 1.3 !important;
+  }
 `;
 
 const PeriodEndedMessage = styled(Typography)`
   text-align: center;
+  
+  @media (max-width: ${theme.breakpoints.md}) {
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+  }
 `;
 
 const FullWidthForm = styled(Form)`
   width: 100%;
+  
+  @media (max-width: ${theme.breakpoints.md}) {
+    gap: ${theme.spacing.lg} !important;
+    
+    .form-title {
+      font-size: 2rem !important;
+      line-height: 1.3 !important;
+      margin-bottom: 0.5rem;
+    }
+    
+    .form-subtitle {
+      font-size: 1rem !important;
+      line-height: 1.6 !important;
+      margin-bottom: 1.5rem;
+    }
+  }
 `;
 
 const FullWidthInput = styled(Input)`
   width: 100%;
+  
+  @media (max-width: ${theme.breakpoints.md}) {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+    
+    label {
+      font-size: 1rem !important;
+      line-height: 1.5 !important;
+      margin-bottom: 0.5rem;
+    }
+    
+    input {
+      font-size: 16px !important;
+      padding: ${theme.spacing.md} !important;
+      min-height: 48px;
+    }
+  }
 `;
 
 const FullWidthTextarea = styled(Textarea)`
   width: 100%;
+  
+  @media (max-width: ${theme.breakpoints.md}) {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+    
+    label {
+      font-size: 1rem !important;
+      line-height: 1.5 !important;
+      margin-bottom: 0.5rem;
+    }
+    
+    textarea {
+      font-size: 16px !important;
+      padding: ${theme.spacing.md} !important;
+      min-height: 48px;
+    }
+  }
 `;
 
 const CheckboxItem = styled.div`
@@ -81,6 +195,26 @@ const CheckboxItem = styled.div`
 
   &:hover {
     background-color: ${theme.colors.surface.primary};
+  }
+  
+  @media (max-width: ${theme.breakpoints.md}) {
+    min-height: 48px;
+    padding: ${theme.spacing.md};
+    
+    label {
+      font-size: 0.95rem !important;
+      line-height: 1.6 !important;
+    }
+  }
+`;
+
+const TouchFriendlyButton = styled(Button)`
+  @media (max-width: ${theme.breakpoints.md}) {
+    min-height: 48px;
+    padding: ${theme.spacing.md} ${theme.spacing.lg};
+    font-size: 1rem;
+    width: 100%;
+    max-width: 300px;
   }
 `;
 
@@ -312,7 +446,7 @@ export default function RecruitPage() {
         }
       />
 
-      <Section variant="default" align="center" padding="md">
+      <ResponsiveSection variant="default" align="center" padding="md">
         <Section.Content>
           <Typography variant="h1" color="white">
             {t("recruit.title")}
@@ -321,12 +455,12 @@ export default function RecruitPage() {
             {t("recruit.subtitle")}
           </Typography>
         </Section.Content>
-      </Section>
+      </ResponsiveSection>
 
       {!isRecruitmentPeriod ? (
-        <Section variant="default" align="center" padding="lg">
+        <ResponsiveSection variant="default" align="center" padding="lg">
           <Section.Content>
-            <Card variant="elevated" padding="lg">
+            <MobileCard variant="elevated" padding="lg">
               <PeriodEndedTitle variant="h2" color="white">
                 {t("recruit.periodEnded.title")}
               </PeriodEndedTitle>
@@ -335,17 +469,17 @@ export default function RecruitPage() {
                 <br />
                 {t("recruit.periodEnded.submessage")}
               </PeriodEndedMessage>
-            </Card>
+            </MobileCard>
           </Section.Content>
-        </Section>
+        </ResponsiveSection>
       ) : (
-        <Section variant="default" align="left" padding="md">
+        <ResponsiveSection variant="default" align="left" padding="md">
           <Section.Content>
-            <Card variant="elevated" padding="lg">
+            <MobileCard variant="elevated" padding="lg">
               <FullWidthForm onSubmit={handleSubmit} gap="xl">
                 <div>
-                  <Form.Title>{t("recruit.form.title")}</Form.Title>
-                  <Form.Subtitle>
+                  <Form.Title className="form-title">{t("recruit.form.title")}</Form.Title>
+                  <Form.Subtitle className="form-subtitle">
                     {t("recruit.period.title")} {":"}{" "}
                     {t("recruit.period.message")}
                   </Form.Subtitle>
@@ -497,7 +631,7 @@ export default function RecruitPage() {
                 </Form.Section>
 
                 <Form.Actions>
-                  <Button
+                  <TouchFriendlyButton
                     variant="primary"
                     type="submit"
                     loading={isSubmitting}
@@ -506,21 +640,21 @@ export default function RecruitPage() {
                     {isSubmitting
                       ? t("recruit.form.submitting")
                       : t("recruit.form.submitButton")}
-                  </Button>
+                  </TouchFriendlyButton>
                 </Form.Actions>
               </FullWidthForm>
-            </Card>
+            </MobileCard>
           </Section.Content>
-        </Section>
+        </ResponsiveSection>
       )}
 
-      <Section variant="transparent" align="center" padding="sm">
+      <ResponsiveSection variant="transparent" align="center" padding="sm">
         <Section.Content>
           <Typography variant="body" color="secondary">
             {t("recruit.form.contactInfo")}
           </Typography>
         </Section.Content>
-      </Section>
+      </ResponsiveSection>
     </PageContainer>
   );
 }
